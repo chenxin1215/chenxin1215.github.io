@@ -112,3 +112,4 @@ deploy:
   repo: https://github.com/chenxin1215/chenxin1215.github.io
   # example, https://github.com/hexojs/hexojs.github.io
   branch: master
+  
