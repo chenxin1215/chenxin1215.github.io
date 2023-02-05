@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>链路追踪Skywalking+MySQL实战部署 | keep blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="一、链路追踪skywalking基本介绍 什么是链路追踪  随着微服务分布式系统变得日趋复杂，越来越多的组件开始走向分布式化，如分布式服务、分布式数据库、分布式缓存等，使得后台服务构成了一种复杂的分布式网络。在服务能力提升的同时，复杂的网络结构也使问题定位更加困难。在一个请求在经过诸多服务过程中，出现了某一个调用失败的情况，查询具体的异常由哪一个服务引起的就变得十分抓狂，问题定位和处理效率是也会非">
+<meta property="og:type" content="article">
+<meta property="og:title" content="链路追踪Skywalking+MySQL实战部署">
+<meta property="og:url" content="http://example.comde/2023/02/03/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AASkywalking-MySQL%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:site_name" content="keep blog">
+<meta property="og:description" content="一、链路追踪skywalking基本介绍 什么是链路追踪  随着微服务分布式系统变得日趋复杂，越来越多的组件开始走向分布式化，如分布式服务、分布式数据库、分布式缓存等，使得后台服务构成了一种复杂的分布式网络。在服务能力提升的同时，复杂的网络结构也使问题定位更加困难。在一个请求在经过诸多服务过程中，出现了某一个调用失败的情况，查询具体的异常由哪一个服务引起的就变得十分抓狂，问题定位和处理效率是也会非">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.comde/2023/02/03/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AASkywalking-MySQL%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/skywalking-%E6%97%B6%E5%BA%8F%E5%9B%BE.svg">
+<meta property="og:image" content="http://example.comde/2023/02/03/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AASkywalking-MySQL%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/log_1.png">
+<meta property="og:image" content="http://example.comde/2023/02/03/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AASkywalking-MySQL%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/trade_1.png">
+<meta property="article:published_time" content="2023-02-03T08:51:27.000Z">
+<meta property="article:modified_time" content="2023-02-03T08:57:29.521Z">
+<meta property="article:author" content="Keep">
+<meta property="article:tag" content="运维">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.comde/2023/02/03/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AASkywalking-MySQL%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/skywalking-%E6%97%B6%E5%BA%8F%E5%9B%BE.svg">
+  
+    <link rel="alternate" href="/atom.xml" title="keep blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">keep blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">这里有一个宝宝</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.comde"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-链路追踪Skywalking-MySQL实战部署" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/02/03/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AASkywalking-MySQL%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/" class="article-date">
+  <time class="dt-published" datetime="2023-02-03T08:51:27.000Z" itemprop="datePublished">2023-02-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      链路追踪Skywalking+MySQL实战部署
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="一、链路追踪skywalking"><a href="#一、链路追踪skywalking" class="headerlink" title="一、链路追踪skywalking"></a>一、链路追踪skywalking</h2><h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3><ul>
+<li>什么是链路追踪</li>
+</ul>
+<p>随着微服务分布式系统变得日趋复杂，越来越多的组件开始走向分布式化，如分布式服务、分布式数据库、分布式缓存等，使得后台服务构成了一种复杂的分布式网络。在服务能力提升的同时，复杂的网络结构也使问题定位更加困难。在一个请求在经过诸多服务过程中，出现了某一个调用失败的情况，查询具体的异常由哪一个服务引起的就变得十分抓狂，问题定位和处理效率是也会非常低。</p>
+<p>分布式链路追踪就是将一次分布式请求还原成调用链路，将一次分布式请求的调用情况集中展示，比如各个服务节点上的耗时、请求具体到达哪台机器上、每个服务节点的请求状态等等。</p>
+<ul>
+<li>为什么要使用链路追踪</li>
+</ul>
+<p>链路追踪为分布式应用的开发者提供了完整的调用链路还原、调用请求量统计、链路拓扑、应用依赖分析等工具，可以帮助开发者快速分析和诊断分布式应用架构下的性能瓶颈，提高微服务时代下的开发诊断效率。</p>
+<ul>
+<li>skywalking 链路追踪</li>
+</ul>
+<p>SkyWalking是一个可观测性分析平台（Observability Analysis Platform 简称OAP）和应用性能管理系统（Application Performance Management 简称 APM）。</p>
+<p>提供分布式链路追踪，服务网格（Service Mesh）遥测分析，度量（Metric）聚合和可视化一体化解决方案。</p>
+<p>SkyWalking 特点</p>
+<ul>
+<li>多语言自动探针，java，.Net Code ,Node.Js</li>
+<li>多监控手段，语言探针和Service Mesh</li>
+<li>轻量高效，不需要额外搭建大数据平台</li>
+<li>模块化架构，UI ，存储《集群管理多种机制可选</li>
+<li>支持警告</li>
+<li>优秀的可视化效果。</li>
+</ul>
+<h2 id="二、Skywalking环境部署"><a href="#二、Skywalking环境部署" class="headerlink" title="二、Skywalking环境部署"></a>二、Skywalking环境部署</h2><h3 id="2-1-简介"><a href="#2-1-简介" class="headerlink" title="2.1 简介"></a>2.1 简介</h3><p>部署版本：skywalking8.5</p>
+<p>skywalking环境主要分为三个部分：</p>
+<ol>
+<li>skywalking-oap 核心服务</li>
+<li>skywalking-ui  可视化操作界面</li>
+<li>skywalking-agent 需要部署到监控的每个微服务中，起到发送监控数据到skywalking-oap中的作用</li>
+</ol>
+<p><img src="/2023/02/03/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AASkywalking-MySQL%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/skywalking-%E6%97%B6%E5%BA%8F%E5%9B%BE.svg" alt="img"></p>
+<h3 id="2-2-Docker单机部署"><a href="#2-2-Docker单机部署" class="headerlink" title="2.2 Docker单机部署"></a>2.2 Docker单机部署</h3><h4 id="skywalking-oap部署"><a href="#skywalking-oap部署" class="headerlink" title="skywalking-oap部署"></a>skywalking-oap部署</h4><ol>
+<li>启动容器需要修改oap-server中的配置：注册中心配置（没有可以不配置）、持久化配置。<ol>
+<li>配置文件地址：apache-skywalking-apm根目录 -&gt; config -&gt; application.yml</li>
+<li>个人不建议在此文件中配置，可以使用环境变量替换配置值</li>
+</ol>
+</li>
+<li>如果需要使用MySQL做持久化，还需要将mysql-connector-java.jar传入到skywalking-oap容器内部的&#x2F;skywalking&#x2F;oap-libs&#x2F;目录下。</li>
+<li>制作Dockerfile</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">FROM apache/skywalking-oap-server:8.5.0-es7</span><br><span class="line">MAINTAINER chenxin</span><br><span class="line">COPY oap-libs/mysql-connector-java-5.1.47.jar /skywalking/oap-libs/mysql-connector-java-5.1.47.jar</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">【可选】告警功能配置 详细见下文告警功能配置部分</span></span><br><span class="line">COPY alarm-settings.yml /skywalking/config/alarm-settings.yml</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">声明容器访问端口</span></span><br><span class="line">EXPOSE 1234</span><br><span class="line">EXPOSE 11800</span><br><span class="line">EXPOSE 12800</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">环境变量</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">持久化使用MySQL</span></span><br><span class="line">ENV SW_STORAGE=mysql SW_JDBC_URL=&quot;jdbc:mysql://xxx.xx.xx.xx:3306/skywalking&quot; SW_DATA_SOURCE_USER=root SW_DATA_SOURCE_PASSWORD=123456</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">数据清理间隔日期：1天</span></span><br><span class="line">ENV SW_CORE_METRICS_DATA_TTL=1 SW_CORE_RECORD_DATA_TTL=1</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>容器启动命令</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动容器</span></span><br><span class="line">docker run --name skywalking-mysql -d \</span><br><span class="line">-p 1234:1234 -p 11800:11800 -p 12800:12800 --restart always skywalking-mysql</span><br></pre></td></tr></table></figure>
+
+<h4 id="skywalking-ui部署"><a href="#skywalking-ui部署" class="headerlink" title="skywalking-ui部署"></a>skywalking-ui部署</h4><ol>
+<li>只需要配置skywalking-oap-server的地址即可，直接使用docker run命令启动</li>
+<li>容器启动命令。 [skywalking-mysql]是skywalking-oap的容器名</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run --name skywalking-mysql-ui -d -p 8888:8080 --restart always \</span><br><span class="line">--link skywalking-mysql -e SW_OAP_ADDRESS=skywalking-mysql:12800 \</span><br><span class="line">apache/skywalking-ui:8.5.0</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、项目接入部署"><a href="#三、项目接入部署" class="headerlink" title="三、项目接入部署"></a>三、项目接入部署</h2><h3 id="3-1-在服务中部署agent代理"><a href="#3-1-在服务中部署agent代理" class="headerlink" title="3.1 在服务中部署agent代理"></a>3.1 在服务中部署agent代理</h3><h4 id="1-服务部署添加agent"><a href="#1-服务部署添加agent" class="headerlink" title="1. 服务部署添加agent"></a>1. 服务部署添加agent</h4><ol>
+<li>将skywalking-agent中agent目录放入容器中，如下图的：COPY skywalking-agent&#x2F;agent &#x2F;agent&#x2F;</li>
+<li>修改环境遍历配置，指定skywalking-oap-server的地址</li>
+<li>在Java启动命令中使用javaagent命令配置代理信息</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">FROM java:8</span><br><span class="line">MAINTAINER chenxin</span><br><span class="line">COPY java-study-1.0-SNAPSHOT.jar java-study.jar</span><br><span class="line">EXPOSE 8080</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 将skywalking-agent中agent目录放入容器中</span></span><br><span class="line">COPY skywalking-agent/agent /agent/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">开启追踪白名单插件（文件在skywalking-agent项目包内）</span></span><br><span class="line">COPY agent/optional-plugins/apm-trace-ignore-plugin-8.5.0.jar /agent/plugins/apm-trace-ignore-plugin-8.5.0.jar</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置追踪白名单（见下文）</span></span><br><span class="line">COPY apm-trace-ignore-plugin.config /agent/config/apm-trace-ignore-plugin.config</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 环境变量配置 接入我们的skywalking-server</span></span><br><span class="line">ENV SW_AGENT_COLLECTOR_BACKEND_SERVICES=xxx.xxx.xx.xx:11800 SW_GRPC_LOG_SERVER_HOST=xxx.xxx.xx.xx</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3. 勾子配置  -javaagent:/agent/skywalking-agent.jar=agent.service_name=java-study</span></span><br><span class="line">ENTRYPOINT [&quot;java&quot;, &quot;-javaagent:/agent/skywalking-agent.jar=agent.service_name=java-study&quot;,&quot;-Duser.timezone=GMT+08&quot;,&quot;-Xms128m&quot;,&quot;-Xmx128m&quot;, &quot;-jar&quot;, &quot;java-study.jar&quot;]</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-追踪白名单配置"><a href="#2-追踪白名单配置" class="headerlink" title="2. 追踪白名单配置"></a>2. 追踪白名单配置</h4><p>防止redis、注册中心等心跳检测，以及Mysql的连接请求刷出大量追踪记录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim apm-trace-ignore-plugin.config</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">写入以下内容</span></span><br><span class="line">trace.ignore_path=$&#123;SW_AGENT_TRACE_IGNORE_PATH:Redisson/**,Mysql/JDBI/Connection/**,Mysql/JDBI/Statement/**&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="2-应用日志打印加入追踪id（定位日志）"><a href="#2-应用日志打印加入追踪id（定位日志）" class="headerlink" title="2. 应用日志打印加入追踪id（定位日志）"></a>2. 应用日志打印加入追踪id（定位日志）</h4><p>具体配置见下文 3.2</p>
+<h2 id="四、可选配置"><a href="#四、可选配置" class="headerlink" title="四、可选配置"></a>四、可选配置</h2><h3 id="4-1-告警功能配置【可选】"><a href="#4-1-告警功能配置【可选】" class="headerlink" title="4.1 告警功能配置【可选】"></a>4.1 告警功能配置【可选】</h3><ol>
+<li>修改替换skywalking-oap-server中的config&#x2F;alarm-settings.yml文件，修改其中webhooks地址(通知地址)</li>
+<li>实现通知notify接口（接口只能为POST）</li>
+</ol>
+<h3 id="4-2-应用日志打印加入追踪id（定位日志）"><a href="#4-2-应用日志打印加入追踪id（定位日志）" class="headerlink" title="4.2 应用日志打印加入追踪id（定位日志）"></a>4.2 应用日志打印加入追踪id（定位日志）</h3><p>方案：修改项目日志打印格式，配置自定义参数tradeId，使每一行日志都能输出对应追踪id。</p>
+<p>详情可以参考我的另一篇文章：关于Java配置自定义日志格式、自定义参数问题</p>
+<p>使用示例：</p>
+<p><img src="/2023/02/03/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AASkywalking-MySQL%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/log_1.png" alt="img"></p>
+<p><img src="/2023/02/03/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AASkywalking-MySQL%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/trade_1.png" alt="img"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.comde/2023/02/03/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AASkywalking-MySQL%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/" data-id="cldrh71wo0003jgm0gkc43gwa" data-title="链路追踪Skywalking+MySQL实战部署" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/02/03/MySQL%E6%9F%A5%E8%AF%A2%E5%85%A8%E8%A1%A8%E6%95%B0%E6%8D%AE%E5%AE%B9%E9%87%8F%E5%8F%8A%E8%AE%B0%E5%BD%95%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">MySQL查询全表数据容量及记录数</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 10px;">运维</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/02/03/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AASkywalking-MySQL%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/">链路追踪Skywalking+MySQL实战部署</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/03/MySQL%E6%9F%A5%E8%AF%A2%E5%85%A8%E8%A1%A8%E6%95%B0%E6%8D%AE%E5%AE%B9%E9%87%8F%E5%8F%8A%E8%AE%B0%E5%BD%95%E6%95%B0/">MySQL查询全表数据容量及记录数</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/03/%E5%85%B3%E4%BA%8E%E4%BF%AE%E6%94%B9Java%E9%A1%B9%E7%9B%AE%E6%97%A5%E5%BF%97%E6%A0%BC%E5%BC%8F%E9%97%AE%E9%A2%98/">关于Java配置自定义日志格式、自定义参数问题</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/02/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 Keep<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
