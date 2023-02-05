@@ -103,12 +103,13 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+# theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:chenxin1215/chenxin1215.github.io.git,master
+  repo: git@github.com:chenxin1215/chenxin1215.github.io.git
   # example, https://github.com/hexojs/hexojs.github.io
-  branch: master
+  branch: main
