@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>MySQL查询全表数据容量及记录数 | keep blog</title>
+  <title>MySQL运维常用SQL命令 | keep blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="查询SQL123456789selecttable_schema as &amp;#x27;数据库&amp;#x27;,table_name as &amp;#x27;表名&amp;#x27;,table_rows as &amp;#x27;记录数&amp;#x27;,truncate(data_length&#x2F;1024&#x2F;1024, 2) as &amp;#x27;数据容量(MB)&amp;#x27;,truncate(index_length&#x2F;1024&#x2F;102">
+  <meta name="description" content="常用查询命令123456789-- 查询全表数据容量大小selecttable_schema as &amp;#x27;数据库&amp;#x27;,table_name as &amp;#x27;表名&amp;#x27;,table_rows as &amp;#x27;记录数&amp;#x27;,truncate(data_length&#x2F;1024&#x2F;1024, 2) as &amp;#x27;数据容量(MB)&amp;#x27;,truncate(index_l">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL查询全表数据容量及记录数">
-<meta property="og:url" content="http://example.comde/2023/02/03/MySQL%E6%9F%A5%E8%AF%A2%E5%85%A8%E8%A1%A8%E6%95%B0%E6%8D%AE%E5%AE%B9%E9%87%8F%E5%8F%8A%E8%AE%B0%E5%BD%95%E6%95%B0/index.html">
+<meta property="og:title" content="MySQL运维常用SQL命令">
+<meta property="og:url" content="http://example.comde/2023/02/03/MySQL%E8%BF%90%E7%BB%B4%E5%B8%B8%E7%94%A8SQL%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="keep blog">
-<meta property="og:description" content="查询SQL123456789selecttable_schema as &amp;#x27;数据库&amp;#x27;,table_name as &amp;#x27;表名&amp;#x27;,table_rows as &amp;#x27;记录数&amp;#x27;,truncate(data_length&#x2F;1024&#x2F;1024, 2) as &amp;#x27;数据容量(MB)&amp;#x27;,truncate(index_length&#x2F;1024&#x2F;102">
+<meta property="og:description" content="常用查询命令123456789-- 查询全表数据容量大小selecttable_schema as &amp;#x27;数据库&amp;#x27;,table_name as &amp;#x27;表名&amp;#x27;,table_rows as &amp;#x27;记录数&amp;#x27;,truncate(data_length&#x2F;1024&#x2F;1024, 2) as &amp;#x27;数据容量(MB)&amp;#x27;,truncate(index_l">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-02-03T05:29:10.000Z">
-<meta property="article:modified_time" content="2023-02-03T06:31:37.496Z">
+<meta property="article:modified_time" content="2023-02-07T23:23:51.449Z">
 <meta property="article:author" content="Keep">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
@@ -78,9 +78,9 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-MySQL查询全表数据容量及记录数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-MySQL运维常用SQL命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/02/03/MySQL%E6%9F%A5%E8%AF%A2%E5%85%A8%E8%A1%A8%E6%95%B0%E6%8D%AE%E5%AE%B9%E9%87%8F%E5%8F%8A%E8%AE%B0%E5%BD%95%E6%95%B0/" class="article-date">
+    <a href="/2023/02/03/MySQL%E8%BF%90%E7%BB%B4%E5%B8%B8%E7%94%A8SQL%E5%91%BD%E4%BB%A4/" class="article-date">
   <time class="dt-published" datetime="2023-02-03T05:29:10.000Z" itemprop="datePublished">2023-02-03</time>
 </a>
     
@@ -92,7 +92,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      MySQL查询全表数据容量及记录数
+      MySQL运维常用SQL命令
     </h1>
   
 
@@ -100,11 +100,18 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="查询SQL"><a href="#查询SQL" class="headerlink" title="查询SQL"></a>查询SQL</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select</span><br><span class="line">table_schema as &#x27;数据库&#x27;,</span><br><span class="line">table_name as &#x27;表名&#x27;,</span><br><span class="line">table_rows as &#x27;记录数&#x27;,</span><br><span class="line">truncate(data_length/1024/1024, 2) as &#x27;数据容量(MB)&#x27;,</span><br><span class="line">truncate(index_length/1024/1024, 2) as &#x27;索引容量(MB)&#x27;</span><br><span class="line">from information_schema.tables</span><br><span class="line">-- where TABLE_SCHEMA = &#x27;skywalking&#x27;</span><br><span class="line">order by data_length desc, index_length desc;</span><br></pre></td></tr></table></figure>
+        <h3 id="常用查询命令"><a href="#常用查询命令" class="headerlink" title="常用查询命令"></a>常用查询命令</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询全表数据容量大小</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">table_schema <span class="keyword">as</span> <span class="string">&#x27;数据库&#x27;</span>,</span><br><span class="line">table_name <span class="keyword">as</span> <span class="string">&#x27;表名&#x27;</span>,</span><br><span class="line">table_rows <span class="keyword">as</span> <span class="string">&#x27;记录数&#x27;</span>,</span><br><span class="line"><span class="keyword">truncate</span>(data_length<span class="operator">/</span><span class="number">1024</span><span class="operator">/</span><span class="number">1024</span>, <span class="number">2</span>) <span class="keyword">as</span> <span class="string">&#x27;数据容量(MB)&#x27;</span>,</span><br><span class="line"><span class="keyword">truncate</span>(index_length<span class="operator">/</span><span class="number">1024</span><span class="operator">/</span><span class="number">1024</span>, <span class="number">2</span>) <span class="keyword">as</span> <span class="string">&#x27;索引容量(MB)&#x27;</span></span><br><span class="line"><span class="keyword">from</span> information_schema.tables</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> data_length <span class="keyword">desc</span>, index_length <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询正在运行的SQL及运行状态</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> information_schema.INNODB_TRX</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询正在被使用的表</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">OPEN</span> TABLES <span class="keyword">where</span> In_use <span class="operator">&gt;</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询被锁住了的表</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> INFORMATION_SCHEMA.INNODB_LOCKS;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.comde/2023/02/03/MySQL%E6%9F%A5%E8%AF%A2%E5%85%A8%E8%A1%A8%E6%95%B0%E6%8D%AE%E5%AE%B9%E9%87%8F%E5%8F%8A%E8%AE%B0%E5%BD%95%E6%95%B0/" data-id="clduv7agt000ciom08j9s8xdx" data-title="MySQL查询全表数据容量及记录数" class="article-share-link">分享</a>
+      <a data-url="http://example.comde/2023/02/03/MySQL%E8%BF%90%E7%BB%B4%E5%B8%B8%E7%94%A8SQL%E5%91%BD%E4%BB%A4/" data-id="clduvc8fh0003hcm0hihu5d4u" data-title="MySQL运维常用SQL命令" class="article-share-link">分享</a>
       
       
       
