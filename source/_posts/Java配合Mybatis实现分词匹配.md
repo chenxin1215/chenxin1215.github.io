@@ -1,7 +1,9 @@
 ---
 title: Java配合Mybatis实现分词匹配
 date: 2023-02-08 07:02:05
-tags: Java
+tags: 
+    - Java
+categories: 编程经验
 ---
 
 Java代码：
