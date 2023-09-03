@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>搭建Hexo博客</title>
+    <link href="/2023/09/03/%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2/"/>
+    <url>/2023/09/03/%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2/</url>
+    
+    <content type="html"><![CDATA[<h1 id="hexo是什么"><a href="#hexo是什么" class="headerlink" title="hexo是什么"></a>hexo是什么</h1><p><a href="https://hexo.io/zh-cn/">Hexo</a>是一个博客框架，使用markdown语法写作，一键编译生成静态文件，一键部署到github或gitlab等。</p><h1 id="初始化hexo博客项目"><a href="#初始化hexo博客项目" class="headerlink" title="初始化hexo博客项目"></a>初始化hexo博客项目</h1><p>首先安装node环境，然后全局安装 hexo-cli ：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cnpm install -g hexo-cli<br></code></pre></td></tr></table></figure><p>安装成功后，使用 hexo init 命令初始化项目：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo init myblog  <span class="hljs-comment"># 会在当前目录下创建一个myblog目录</span><br></code></pre></td></tr></table></figure><h1 id="创作文章"><a href="#创作文章" class="headerlink" title="创作文章"></a>创作文章</h1><p>进入myblog目录，执行以下命令可以创建一篇新文章，标题为test：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo new <span class="hljs-built_in">test</span><br></code></pre></td></tr></table></figure><p>hexo会在source&#x2F;_posts目录下创建一个test.md文件，我们在这里使用markdown语法写博客即可：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash">---<br>title: <span class="hljs-built_in">test</span><br><span class="hljs-built_in">date</span>: 2023-09-02 21:17:39<br>tags: <br>- hexo<br>- 博客<br>categories: 教程<br>---<br><br><span class="hljs-comment"># 一级标题</span><br><br><span class="hljs-comment">## 二级标题</span><br><br>这里开始我们的写作吧<br></code></pre></td></tr></table></figure><p>上面文件最上方以—分隔的区域，用于指定文章属性（<a href="https://hexo.io/zh-cn/docs/front-matter">Front-matter | Hexo</a>），常用的属性就是title, date, tag, categories，分别指定文章标题、建立日期、标签和分类。其中标题和建立日期都是自动生成的，我们不用管。tag和categories一般是由我们自己设置的。</p><p><strong>hexo中的分类categories和标签tag的区别在于：categories编译后对应的是一个分类目录，而tag只是一个标记：</strong></p><p><strong>一篇文章只能包含一个分类，但是可以包含多个标签。</strong><br>我们使用hexo new &lt;文章名&gt;命令创建的文章，是被放到了source&#x2F;_posts目录下。事实上，post是hexo文章的一种布局，<strong>hexo一共支持3种布局方式：post、page、draft</strong>，使用下面的命令可以创建指定布局的文章：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo new post &lt;文章名&gt;<br>hexo new page &lt;文章名&gt;<br>hexo new draft &lt;文章名&gt;<br></code></pre></td></tr></table></figure><p>其中post布局的文章会被创建到source&#x2F;_posts目录下，表示这是要被发表的文章；page布局的文章会在source目录下创建一个以&lt;文章名&gt;命名的文件夹，在文件夹下再创建一个index.md，这是个啥意思我也不懂，但是我们一般不用它，因为我们已经使用了tag和categories，就没法使用page了；draft布局的文章会被创建到source&#x2F;_drafts目录下，表示这是一个草稿，当使用hexo generate命令编译时，不会被编译成静态页面。<br><img src="/2023/09/03/%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2/image.png" alt="img"><br>如果我们想预览草稿，可以在编译时添加–draft参数：hexo generate –draft。如果我们想把草稿发布，可以使用hexo publish &lt;文章名&gt;命令。<br>写完文章后，我们先使用hexo clean命令清除之前编译的站点页面。<br>然后使用hexo generate命令编译出静态站点页面（保存在source&#x2F;public中）。<br>最后使用hexo server命令就可以在本地预览：<br><img src="/2023/09/03/%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2/image1.png" alt="img"><br>访问<a href="http://localhost:4000：">http://localhost:4000：</a><br><img src="/2023/09/03/%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2/image2.png" alt="img"><br>小提示：在hexo3中新增了hexo-server，支持hexo监视文件变动并自动更新，无需重启服务器：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">cnpm install hexo-server --save<br>hexo server<br></code></pre></td></tr></table></figure><h1 id="部署到Github"><a href="#部署到Github" class="headerlink" title="部署到Github"></a>部署到Github</h1><p>hexo最牛逼的地方在于，可以把博客部署到github、gitlab、gitee、gitcode等git代码网站上，利用它们提供的pages服务提供博客服务。<br>这是因为hexo编译生成的是一个静态网站，而pages服务就是提供静态网站访问服务的。</p><p>1、创建一个github仓库，开通pages服务。<br>2、安装 <a href="https://github.com/hexojs/hexo-deployer-git">hexojs&#x2F;hexo-deployer-git: Git deployer plugin for Hexo. (github.com)</a></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cnpm install hexo-deployer-git --save<br></code></pre></td></tr></table></figure><p>3、修改博客配置（_config.yml）:</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">git@github.com:xxxx/xxxx.github.io.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br></code></pre></td></tr></table></figure><p>4、生成站点文件并推送至远程仓库：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo clean  <span class="hljs-comment"># 保险起见，每次我们都清空一下</span><br>hexo deploy --generate<br></code></pre></td></tr></table></figure><p>5、登入 Github&#x2F;BitBucket&#x2F;Gitlab，请在库设置（Repository Settings）中将默认分支设置为_config.yml配置中的分支名称。稍等片刻（github后台在使用Travis CI自动部署），您的站点就会显示在您的Github Pages中。<br>此外，如果您的 Github Pages 需要使用 CNAME 文件自定义域名，请将 CNAME 文件置于 source 目录下，只有这样 hexo deploy 才能将 CNAME 文件一并推送至部署分支。<br>更多参考：<a href="https://hexo.io/zh-cn/docs/one-command-deployment">部署 | Hexo</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>虚拟机安装与网络配置</title>
+    <link href="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/"/>
+    <url>/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</url>
+    
+    <content type="html"><![CDATA[<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><h4 id="vm软件"><a href="#vm软件" class="headerlink" title="vm软件"></a>vm软件</h4><p>软件官网下载地址：<a href="https://customerconnect.vmware.com/cn/downloads/#all_products">https://customerconnect.vmware.com/cn/downloads/#all_products</a><br>windows版本：搜索workstation<br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image1.png" alt="img"></p><p>许可证：YF390-0HF8P-M81RQ-2DXQE-M2UT6</p><p>mac版本：搜索fusion<br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image2.png" alt="img"></p><h4 id="镜像文件"><a href="#镜像文件" class="headerlink" title="镜像文件"></a>镜像文件</h4><p>centos镜像下载地址：<a href="http://mirrors.aliyun.com/centos/7/isos/x86_64/">http://mirrors.aliyun.com/centos/7/isos/x86_64&#x2F;</a><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image3.png" alt="img"></p><h3 id="一、创建虚拟机，以centos为例"><a href="#一、创建虚拟机，以centos为例" class="headerlink" title="一、创建虚拟机，以centos为例"></a>一、创建虚拟机，以centos为例</h3><ol><li>新建虚拟机 选择自定义</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image4.png" alt="img"></p><ol start="2"><li>硬盘兼容性 选择默认即可</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image5.png" alt="img"></p><ol start="3"><li>装客户机操作系统 选择稍后安装（因为tfwf要在虚拟机安装完成之后，把不需要的硬件删除，所以选择稍后安装操作系统）</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image6.png" alt="img"></p><ol start="4"><li>选择客户机操作系统 选择linux -&gt; CentOS 7 64位； 注意对应下载的镜像文件版本</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image7.png" alt="img"></p><ol start="5"><li>命名虚拟机、位置； 最好把位置放在一个同一的文件夹</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image8.png" alt="img"></p><ol start="6"><li>处理器配置（注意不能超过主机的核心数）</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image9.png" alt="img"></p><ol start="7"><li>内存配置，一般配置2G既可，如果需要安装Gitlab、jenkins之类的 必须增大内存</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image10.png" alt="img"></p><ol start="8"><li>网络配置 选择桥接网络（虚拟机可以与主机使用同一网络）</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image11.png" alt="img"></p><ol start="9"><li>选择I&#x2F;O控制器类型 默认选项； 磁盘类型 默认选项</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image12.png" alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image13.png" alt="img"></p><ol start="10"><li>选择磁盘 -&gt; 创建新的磁盘</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image14.png" alt="img"></p><ol start="11"><li>指定磁盘容量（这里是最大容量 虚拟的 不占主机内存）</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image15.png" alt="img"></p><ol start="12"><li>指定磁盘文件（最好不使用中文）</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image16.png" alt="img"></p><ol start="13"><li>自定义硬件  移除USB控制器、声卡、打印机（这样启动快一点）</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image17.png" alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image18.png" alt="img"></p><ol start="14"><li>安装镜像</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image19.png" alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image20.png" alt="img"></p><ol start="15"><li>开始安装虚拟机系统</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image21.png" alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image22.png" alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image23.png" alt="img"></p><ol start="16"><li>设置时区</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image24.png" alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image25.png" alt="img"></p><ol start="17"><li>系统分区</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image26.png" alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image27.png" alt="img"></p><ol start="18"><li>配置本机地址</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image28.png" alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image29.png" alt="img"></p><ol start="19"><li>设置root管理员密码</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image30.png" alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image31.png" alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image32.png" alt="img"></p><ol start="20"><li>重启后出现这个页面 代表安装成功， 使用root账号登录即可</li></ol><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image33.png" alt="img"></p><h3 id="二、搭建VMnet8虚拟局域网"><a href="#二、搭建VMnet8虚拟局域网" class="headerlink" title="二、搭建VMnet8虚拟局域网"></a>二、搭建VMnet8虚拟局域网</h3><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image34.png" alt="img"></p><p>打开VMware软件，点击编辑，点击列表中的虚拟网络编辑器<br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image35.png" alt="img"></p><p>进入虚拟网络编辑器页面</p><ul><li>选择NAT模式</li><li>勾选将主机虚拟适配器连接到此网络</li><li>取消DHCP服务</li></ul><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image36.png" alt="img"></p><p>子网IP和网关IP都先记下来<br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image37.png" alt="img"></p><h3 id="三、CentOS系统配置"><a href="#三、CentOS系统配置" class="headerlink" title="三、CentOS系统配置"></a>三、CentOS系统配置</h3><h4 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h4><h5 id="1、配置ip地址等信息在-x2F-etc-x2F-sysconfig-x2F-network-scripts-x2F-ifcfg-ens33"><a href="#1、配置ip地址等信息在-x2F-etc-x2F-sysconfig-x2F-network-scripts-x2F-ifcfg-ens33" class="headerlink" title="1、配置ip地址等信息在&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33"></a>1、配置ip地址等信息在&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33</h5><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image38.png" alt="img"></p><blockquote><p>vi   &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33&#x2F;</p></blockquote><p>配置如下：（若原文件无引号，则不加引号，没有的就新增）</p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">TYPE</span>=<span class="hljs-string">&quot;Ethernet&quot;</span>   <span class="hljs-comment"># 网络类型为以太网</span><br><span class="hljs-attr">BOOTPROTO</span>=<span class="hljs-string">&quot;static&quot;</span>  <span class="hljs-comment"># 手动分配ip</span><br><span class="hljs-attr">NAME</span>=<span class="hljs-string">&quot;ens33&quot;</span>  <span class="hljs-comment"># 网卡设备名，设备名一定要跟文件名一致</span><br><span class="hljs-attr">DEVICE</span>=<span class="hljs-string">&quot;ens33&quot;</span>  <span class="hljs-comment"># 网卡设备名，设备名一定要跟文件名一致</span><br><span class="hljs-attr">ONBOOT</span>=<span class="hljs-string">&quot;yes&quot;</span>  <span class="hljs-comment"># 该网卡是否随网络服务启动</span><br><span class="hljs-attr">IPADDR</span>=<span class="hljs-string">&quot;192.168.×.×&quot;</span>  <span class="hljs-comment"># 该网卡ip地址就是你要配置的固定IP</span><br><span class="hljs-attr">GATEWAY</span>=<span class="hljs-string">&quot;192.168.×.×&quot;</span>   <span class="hljs-comment"># 网关</span><br><span class="hljs-attr">NETMASK</span>=<span class="hljs-string">&quot;255.255.255.0&quot;</span>   <span class="hljs-comment"># 子网掩码</span><br><span class="hljs-attr">DNS1</span>=<span class="hljs-string">&quot;8.8.8.8&quot;</span>    <span class="hljs-comment"># DNS，8.8.8.8为Google提供的免费DNS服务器的IP地址</span><br></code></pre></td></tr></table></figure><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image39.png" alt="img"></p><h5 id="2-、配置网络工作"><a href="#2-、配置网络工作" class="headerlink" title="2 、配置网络工作"></a>2 、配置网络工作</h5><pre><code class="hljs">在/etc/sysconfig/network文件里增加如下配置NETWORKING=yes</code></pre><h5 id="3、配置公共DNS服务-可选-（不用选）"><a href="#3、配置公共DNS服务-可选-（不用选）" class="headerlink" title="3、配置公共DNS服务(可选)（不用选）"></a>3、配置公共DNS服务(可选)（不用选）</h5><pre><code class="hljs">在/etc/resolv.conf文件里增加如下配置nameserver 8.8.8.8</code></pre><h5 id="4、关闭防护墙"><a href="#4、关闭防护墙" class="headerlink" title="4、关闭防护墙"></a>4、关闭防护墙</h5><pre><code class="hljs">systemctl stop firewalld # 临时关闭防火墙systemctl disable firewalld # 禁止开机启动</code></pre><h5 id="5、重启网络服务"><a href="#5、重启网络服务" class="headerlink" title="5、重启网络服务"></a>5、重启网络服务</h5><pre><code class="hljs">service network restart</code></pre><h5 id="6、查看网络服务"><a href="#6、查看网络服务" class="headerlink" title="6、查看网络服务"></a>6、查看网络服务</h5><pre><code class="hljs">ping 163.com</code></pre><p>没有问题就可以使用服务器连接工具连接虚拟机了</p><h3 id="四、连接虚拟机"><a href="#四、连接虚拟机" class="headerlink" title="四、连接虚拟机"></a>四、连接虚拟机</h3><p>使用刚刚配置的网卡ip地址 （IPADDR）<br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image40.png" alt="img"></p><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image41.png" alt="img"><br>接下来就可以愉快的使用啦！</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程必备</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>虚拟机</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Python程序docker实战部署</title>
+    <link href="/2023/09/03/Python%E7%A8%8B%E5%BA%8Fdocker%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/"/>
+    <url>/2023/09/03/Python%E7%A8%8B%E5%BA%8Fdocker%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/</url>
+    
+    <content type="html"><![CDATA[<p>本文介绍python程序如何制作成docker镜像，并部署在线上服务器上。</p><h3 id="一、python基础认知"><a href="#一、python基础认知" class="headerlink" title="一、python基础认知"></a>一、python基础认知</h3><h4 id="1-包"><a href="#1-包" class="headerlink" title="1. 包"></a>1. 包</h4><p>在一个文件夹中存在一个__init__.py文件，python就会认为这个文件夹是一个包<br>可以在__init__.py文件中做一些初始化的配置、操作等</p><h4 id="2-程序执行与主函数"><a href="#2-程序执行与主函数" class="headerlink" title="2. 程序执行与主函数"></a>2. 程序执行与主函数</h4><p>Python是一种解释型编程语言。<br>Python程序没有显式的”main()”函数入口点。<br>在Python中，程序的执行从文件的顶部开始，逐行执行直到文件的末尾。</p><h4 id="3-Flask应用-web服务"><a href="#3-Flask应用-web服务" class="headerlink" title="3. Flask应用-web服务"></a>3. Flask应用-web服务</h4><p>Flask是Python编程语言中的一个轻量级Web应用框架。它被设计成简单、易用、灵活的框架，用于快速开发Web应用程序和API。<br>语法示例：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask<br><br>app = Flask(__name__)<br><br><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&#x27;/&#x27;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">hello_world</span>():<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Hello, World!&#x27;</span><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    app.run(host=<span class="hljs-string">&#x27;0.0.0.0&#x27;</span>, port=<span class="hljs-number">5000</span>) <span class="hljs-comment"># 0.0.0.0表示支持任意host</span><br><br></code></pre></td></tr></table></figure><h3 id="二、docker镜像制作"><a href="#二、docker镜像制作" class="headerlink" title="二、docker镜像制作"></a>二、docker镜像制作</h3><p>编写完python程序后 确认程序可执行。就可以制作docker镜像了</p><h5 id="1-requirements-txt文件"><a href="#1-requirements-txt文件" class="headerlink" title="1. requirements.txt文件"></a>1. requirements.txt文件</h5><p>在Python中，requirements.txt是一个文本文件，通常用于列出项目所依赖的第三方Python包及其版本信息。<br>这个文件是为了方便项目的依赖管理而创建的。如：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 应用所需的Python依赖库</span><br>Flask==<span class="hljs-number">2.3</span><span class="hljs-number">.2</span><br>mysql-connector==<span class="hljs-number">2.2</span><span class="hljs-number">.9</span><br>psycopg2-binary==<span class="hljs-number">2.9</span><span class="hljs-number">.6</span><br></code></pre></td></tr></table></figure><h5 id="2-Dockerfile文件"><a href="#2-Dockerfile文件" class="headerlink" title="2. Dockerfile文件"></a>2. Dockerfile文件</h5><p>在项目的根目录新建Dockerfile文件如下，注意Dockerfile没有文件后缀名</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用轻量级的基础镜像 打出的镜像包才不会很大</span><br><span class="hljs-comment"># 官方的完整版镜像包打出来都是1G的大小</span><br>FROM python:<span class="hljs-number">3.9</span>-alpine<br><br><span class="hljs-comment"># 设置工作目录</span><br>WORKDIR /app<br><br><span class="hljs-comment"># 安装依赖库</span><br>RUN pip install --no-cache-<span class="hljs-built_in">dir</span> --upgrade pip<br><br><span class="hljs-comment"># 将应用代码复制到镜像中 .表示当前目录 注意清理当前目录的不需要的文件 特别是大文件</span><br>COPY . /app<br><br><span class="hljs-comment"># 安装应用的依赖 注意变更requirements.txt的文件位置</span><br>RUN pip install --no-cache-<span class="hljs-built_in">dir</span> -r ./resource/requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple<br><br><span class="hljs-comment"># 设置环境变量</span><br>ENV MYSQL_HOST <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><br>ENV MYSQL_PORT <span class="hljs-number">3306</span><br>ENV MYSQL_USER root<br>ENV MYSQL_PASSWORD root<br>ENV MYSQL_DATABASE data_base<br><br><span class="hljs-comment"># 暴露Flask应用的端口</span><br>EXPOSE <span class="hljs-number">5000</span><br><br><span class="hljs-comment"># 启动Flask应用</span><br>ENTRYPOINT [<span class="hljs-string">&quot;python3&quot;</span>, <span class="hljs-string">&quot;-u&quot;</span>, <span class="hljs-string">&quot;./project/run.py&quot;</span>,<span class="hljs-string">&quot;runserver&quot;</span>,<span class="hljs-string">&quot;0.0.0.0:5000&quot;</span>, <span class="hljs-string">&quot;--noreload&quot;</span>]<br></code></pre></td></tr></table></figure><h5 id="3-镜像制作"><a href="#3-镜像制作" class="headerlink" title="3. 镜像制作"></a>3. 镜像制作</h5><p>在根目录下执行以下命令（docker环境下）<br>其中docker.xxx.cn为私服的域名，如果没有可以不写 即 test-demo:1.0.0；这里不写就是默认下载官方的<br>注意最后一个 . 是不能少的 </p><blockquote><p> docker build -f Dockerfile -t docker.xxx.cn&#x2F;test-demo:1.0.0 </p></blockquote><h3 id="三、部署"><a href="#三、部署" class="headerlink" title="三、部署"></a>三、部署</h3><h5 id="1-网络私服部署"><a href="#1-网络私服部署" class="headerlink" title="1. 网络私服部署"></a>1. 网络私服部署</h5><p>将本地镜像上传到私服</p><blockquote><p>docker push docker.xxx.cn&#x2F;test-demo:1.0.0</p></blockquote><p>在目的服务器下载镜像</p><blockquote><p>docker pull docker.xxx.cn&#x2F;test-demo:1.0.0</p></blockquote><p>执行 docker run 命令启动容器</p><h5 id="2-手动上传部署"><a href="#2-手动上传部署" class="headerlink" title="2. 手动上传部署"></a>2. 手动上传部署</h5><p>将本地镜像打包成压缩包</p><blockquote><p>docker save -o test-demo.tar test-demo:1.0.0</p></blockquote><p>然后将压缩包传到服务器中，执行加载命令</p><blockquote><p>docker load -i test-demo.tar</p></blockquote><p>执行 docker run 命令启动容器</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>架构</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>python</tag>
+      
+      <tag>docker</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>关于BigDecimal处理浮点类型出现的问题</title>
+    <link href="/2023/02/08/%E5%85%B3%E4%BA%8EBigDecimal%E5%A4%84%E7%90%86%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <url>/2023/02/08/%E5%85%B3%E4%BA%8EBigDecimal%E5%A4%84%E7%90%86%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<p>问题：new BigDecimal(3.9) 出现精度问题 </p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">BigDecimal</span> <span class="hljs-variable">tempModelData</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BigDecimal</span>(<span class="hljs-number">1</span>).multiply(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BigDecimal</span>(<span class="hljs-number">3.9</span>));<br>System.out.println(<span class="hljs-string">&quot;tempModelData = &quot;</span> + tempModelData);<br><br><span class="hljs-comment">// 输出：tempModelData = 3.899999999999999911182158029987476766109466552734375               </span><br></code></pre></td></tr></table></figure><p>原因是3.9是浮点型，自带精度，在new BigdDecimal会把精度带过去</p><p>处理：将new BigDecimal(3.9) 改为 <strong>new BigDecimal(“3.9”)</strong>  字符类型不会带精度</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程经验</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>List复杂对象条件排序</title>
+    <link href="/2023/02/08/List%E5%A4%8D%E6%9D%82%E5%AF%B9%E8%B1%A1%E6%9D%A1%E4%BB%B6%E6%8E%92%E5%BA%8F/"/>
+    <url>/2023/02/08/List%E5%A4%8D%E6%9D%82%E5%AF%B9%E8%B1%A1%E6%9D%A1%E4%BB%B6%E6%8E%92%E5%BA%8F/</url>
+    
+    <content type="html"><![CDATA[<p>上代码：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-comment">// 根据创建时间排序</span><br>Collections.sort(receivableDataList, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Comparator</span>&lt;SaveAccruedItemData&gt;() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(SaveAccruedItemData o1, SaveAccruedItemData o2)</span> &#123;<br>        <span class="hljs-comment">// 需要比较的属性</span><br>        <span class="hljs-type">Date</span> <span class="hljs-variable">key1</span> <span class="hljs-operator">=</span> o1.getOrderCreateTime();<br>        <span class="hljs-type">Date</span> <span class="hljs-variable">key2</span> <span class="hljs-operator">=</span> o2.getOrderCreateTime();<br>        <span class="hljs-comment">// 如果key1大返回1 否则（如果key1小于key2 返回-1 否则返回0）</span><br>        <span class="hljs-keyword">return</span> key1.compareTo(key2);<br>    &#125;<br>&#125;);<br><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程经验</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ParallelStream的使用与问题</title>
+    <link href="/2023/02/08/ParallelStream%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E9%97%AE%E9%A2%98/"/>
+    <url>/2023/02/08/ParallelStream%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<p>parallelStream是Java流式集合操作的一种，它会使用多线程执行循环，效率更高。</p><p>但是需要注意的是：</p><ol><li><p>数据没有很大的时候不要使用parallelStream可能比Stream还慢一些。</p></li><li><p>parallelStream的返回结果会打乱之前的List的顺序。</p></li><li><p><strong>parallelStream是线程不安全的</strong>，当你在遍历中使用，例如请求里面的数据时，就会报一个异常，这个异常就是多个线程执行，但是其他线程没有这个请求的数据，所以获取不到，<strong>解决办法是把需要的数据在遍历外面取到，再传递进去就可以解决</strong></p></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程经验</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Java配合Mybatis实现分词匹配</title>
+    <link href="/2023/02/08/Java%E9%85%8D%E5%90%88Mybatis%E5%AE%9E%E7%8E%B0%E5%88%86%E8%AF%8D%E5%8C%B9%E9%85%8D/"/>
+    <url>/2023/02/08/Java%E9%85%8D%E5%90%88Mybatis%E5%AE%9E%E7%8E%B0%E5%88%86%E8%AF%8D%E5%8C%B9%E9%85%8D/</url>
+    
+    <content type="html"><![CDATA[<p>Java代码：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java">    <span class="hljs-keyword">public</span> List&lt;Label&gt; <span class="hljs-title function_">getRecommendLabel</span><span class="hljs-params">(String forumName)</span> &#123;<br>    <span class="hljs-keyword">if</span> (forumName == <span class="hljs-literal">null</span> || <span class="hljs-string">&quot;&quot;</span>.equals(forumName)) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>    <span class="hljs-comment">// 将forumName 拆分分词 得到一个List</span><br>    <span class="hljs-type">Result</span> <span class="hljs-variable">parse</span> <span class="hljs-operator">=</span> ToAnalysis.parse(forumName);<br>    List&lt;Term&gt; terms = parse.getTerms();<br>    <br>    <span class="hljs-comment">// 使用这个list进行遍历模糊匹配</span><br>    List&lt;Label&gt; labels = labelMapper.getRecommendLabel(terms);<br><br>    <span class="hljs-keyword">return</span> labels;<br>&#125;<br></code></pre></td></tr></table></figure><p>MybatisXml:</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml">    select<br>    <span class="hljs-tag">&lt;<span class="hljs-name">include</span> <span class="hljs-attr">refid</span>=<span class="hljs-string">&quot;Base_Column_List&quot;</span>/&gt;</span><br>    from label<br>    where state = 1 <br>    and(<br>    <span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;list&quot;</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;term&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;or&quot;</span>&gt;</span><br>        label_name LIKE CONCAT(&#x27;%&#x27;, #&#123;term.name&#125;, &#x27;%&#x27;)<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span><br>)<br><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>钩子函数的使用：注册监听JVM关闭</title>
+    <link href="/2023/02/08/%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9A%E6%B3%A8%E5%86%8C%E7%9B%91%E5%90%ACJVM%E5%85%B3%E9%97%AD/"/>
+    <url>/2023/02/08/%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9A%E6%B3%A8%E5%86%8C%E7%9B%91%E5%90%ACJVM%E5%85%B3%E9%97%AD/</url>
+    
+    <content type="html"><![CDATA[<p>代码：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><br>Runtime.getRuntime().addShutdownHook(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(() -&gt; &#123;<br>    System.out.println(<span class="hljs-string">&quot;### 收尾的工作&quot;</span>);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (n &lt; <span class="hljs-number">10</span>) &#123;<br>        System.out.println(Thread.currentThread() + <span class="hljs-string">&quot;,&quot;</span> + n++);<br>        <span class="hljs-keyword">try</span> &#123;<br>            TimeUnit.SECONDS.sleep(<span class="hljs-number">1</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;));<br><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程经验</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Spring事务设置手动回滚</title>
+    <link href="/2023/02/08/Spring%E4%BA%8B%E5%8A%A1%E8%AE%BE%E7%BD%AE%E6%89%8B%E5%8A%A8%E5%9B%9E%E6%BB%9A/"/>
+    <url>/2023/02/08/Spring%E4%BA%8B%E5%8A%A1%E8%AE%BE%E7%BD%AE%E6%89%8B%E5%8A%A8%E5%9B%9E%E6%BB%9A/</url>
+    
+    <content type="html"><![CDATA[<p>直接上代码：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 设置起始点</span><br><span class="hljs-type">Object</span> <span class="hljs-variable">savepoint</span> <span class="hljs-operator">=</span> TransactionAspectSupport.currentTransactionStatus().createSavepoint();<br><span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-built_in">this</span>.check(costAdjustId, userId);<br>&#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>    LOGGER.error(<span class="hljs-string">&quot;批量生成成本调整单 审核调整单异常！&quot;</span>);<br>    errorData.put(<span class="hljs-string">&quot;第&quot;</span> + i + <span class="hljs-string">&quot;行&quot;</span>, <span class="hljs-string">&quot;审核调整单失败！e：&quot;</span> + e.getLocalizedMessage());<br><br>    <span class="hljs-comment">// 设置手动回滚</span><br>    TransactionAspectSupport.currentTransactionStatus().rollbackToSavepoint(savepoint);<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程经验</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>java操作服务器执行shell</title>
+    <link href="/2023/02/08/java%E6%93%8D%E4%BD%9C%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8Cshell/"/>
+    <url>/2023/02/08/java%E6%93%8D%E4%BD%9C%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8Cshell/</url>
+    
+    <content type="html"><![CDATA[<p>直接上代码</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 对象创建</span><br><span class="hljs-type">Connection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Connection</span>(host, port);<br><span class="hljs-comment">// 登录鉴权</span><br>connection.authenticateWithPassword(userName, password);<br><span class="hljs-comment">// 获取session</span><br><span class="hljs-type">Session</span> <span class="hljs-variable">session</span> <span class="hljs-operator">=</span> con.openSession();<br><span class="hljs-comment">// 执行命令</span><br>session.execCommand(cmds);<br><br><span class="hljs-type">InputStream</span> <span class="hljs-variable">stdOut</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StreamGobbler</span>(session.getStdout());<br><span class="hljs-type">String</span> <span class="hljs-variable">outStr</span> <span class="hljs-operator">=</span> processStream(stdOut, CHARSET);<br>logger.info(<span class="hljs-string">&quot;输出结果：&quot;</span>+ outStr);<br><br><span class="hljs-type">InputStream</span> <span class="hljs-variable">stdErr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StreamGobbler</span>(session.getStderr());<br><span class="hljs-type">String</span> <span class="hljs-variable">outErr</span> <span class="hljs-operator">=</span> processStream(stdErr, CHARSET);<br>session.waitForCondition(ChannelCondition.EXIT_STATUS, TIME_OUT);<br>logger.info(<span class="hljs-string">&quot;执行命令&quot;</span> + cmds + <span class="hljs-string">&quot;,错误信息：&quot;</span>+ outErr);<br><br><span class="hljs-comment">// 关闭连接</span><br>session.getExitStatus();<br>session.close();<br></code></pre></td></tr></table></figure><p>其中processStream方法代码：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">processStream</span><span class="hljs-params">(InputStream in, String charset)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br><span class="hljs-type">StringBuilder</span> <span class="hljs-variable">sb</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>    <span class="hljs-type">BufferedReader</span> <span class="hljs-variable">br</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(in));<br>    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">line</span> <span class="hljs-operator">=</span> br.readLine();<br>        <span class="hljs-keyword">if</span>(line == <span class="hljs-literal">null</span>)&#123;<br>        <span class="hljs-keyword">break</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(!line.trim().equals(<span class="hljs-string">&quot;&quot;</span>))&#123;<br>        sb.append(line).append(<span class="hljs-string">&quot;\n&quot;</span>);<br>        &#125;      <br>    &#125;<br>    <span class="hljs-keyword">return</span> sb.toString();<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程经验</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Git的储藏弹出与摘取的用法</title>
+    <link href="/2023/02/08/Git%E7%9A%84%E5%82%A8%E8%97%8F%E5%BC%B9%E5%87%BA%E4%B8%8E%E6%91%98%E5%8F%96%E7%9A%84%E7%94%A8%E6%B3%95/"/>
+    <url>/2023/02/08/Git%E7%9A%84%E5%82%A8%E8%97%8F%E5%BC%B9%E5%87%BA%E4%B8%8E%E6%91%98%E5%8F%96%E7%9A%84%E7%94%A8%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<h4 id="Git的储藏弹出与摘取什么时候可以用到？"><a href="#Git的储藏弹出与摘取什么时候可以用到？" class="headerlink" title="Git的储藏弹出与摘取什么时候可以用到？"></a>Git的储藏弹出与摘取什么时候可以用到？</h4><p>例：<br>问题：你本来是要在b分支上开发，但是你却在a分支上已经开发完了，这个时候，你需要将你在a分支上写的代码“剪切”到b分支上。</p><p>解决方法：<br>①：当你未提交代码时：<br>使用Git的储藏与弹出。 在你开发的a分支上，使用同步里的储藏功能，然后切换到你需要开发的b分支上，使用同步里的弹出功能，即可。<br>②：当你已提交代码时：<br>使用Git的摘取，切换到你需要开发的b分支上，使用摘取功能。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程经验</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>语雀知识库导出md格式到本地</title>
+    <link href="/2023/02/08/%E8%AF%AD%E9%9B%80%E7%9F%A5%E8%AF%86%E5%BA%93%E5%AF%BC%E5%87%BAmd%E6%A0%BC%E5%BC%8F%E5%88%B0%E6%9C%AC%E5%9C%B0/"/>
+    <url>/2023/02/08/%E8%AF%AD%E9%9B%80%E7%9F%A5%E8%AF%86%E5%BA%93%E5%AF%BC%E5%87%BAmd%E6%A0%BC%E5%BC%8F%E5%88%B0%E6%9C%AC%E5%9C%B0/</url>
+    
+    <content type="html"><![CDATA[<h4 id="1-获取语雀个人开发者Token"><a href="#1-获取语雀个人开发者Token" class="headerlink" title="1. 获取语雀个人开发者Token"></a>1. 获取语雀个人开发者Token</h4><p>访问：<a href="https://www.yuque.com/yuque/developer/api#785a3731">https://www.yuque.com/yuque/developer/api#785a3731</a></p><h4 id="2-安装nodeJs"><a href="#2-安装nodeJs" class="headerlink" title="2. 安装nodeJs"></a>2. 安装nodeJs</h4><h4 id="3-导出"><a href="#3-导出" class="headerlink" title="3. 导出"></a>3. 导出</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">以下命令为Windows系统操作</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">安装node依赖</span><br>npm i -g yuque-exporter --registry=https://registry.npmmirror.com<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">设置token环境变量</span><br>set YUQUE_TOKEN=&lt;your_token&gt;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">导出全部知识库到当前文件夹</span><br>yuque-exporter &lt;个人账号，如:chenxin-uxuze&gt;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>其他</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>语雀</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>关于MybatisPlus分页最多只能查询500条</title>
+    <link href="/2023/02/08/%E5%85%B3%E4%BA%8EMybatisPlus%E5%88%86%E9%A1%B5%E6%9C%80%E5%A4%9A%E5%8F%AA%E8%83%BD%E6%9F%A5%E8%AF%A2500%E6%9D%A1/"/>
+    <url>/2023/02/08/%E5%85%B3%E4%BA%8EMybatisPlus%E5%88%86%E9%A1%B5%E6%9C%80%E5%A4%9A%E5%8F%AA%E8%83%BD%E6%9F%A5%E8%AF%A2500%E6%9D%A1/</url>
+    
+    <content type="html"><![CDATA[<h4 id="源码跟踪分析"><a href="#源码跟踪分析" class="headerlink" title="源码跟踪分析"></a>源码跟踪分析</h4><ol><li>所有的使用自带的Page对象分页的方法全部被限制了500条，所以很容易想到是对Page类中的size属性做了限制。</li><li>查看Page类中的setSize方法的调用方，找到PaginationInterceptor类<ol><li><img src="/2023/02/08/%E5%85%B3%E4%BA%8EMybatisPlus%E5%88%86%E9%A1%B5%E6%9C%80%E5%A4%9A%E5%8F%AA%E8%83%BD%E6%9F%A5%E8%AF%A2500%E6%9D%A1/1675757263070-13603bf4-3db0-43c7-843c-bdb0ec7af716.png" alt="image"></li><li><img src="/2023/02/08/%E5%85%B3%E4%BA%8EMybatisPlus%E5%88%86%E9%A1%B5%E6%9C%80%E5%A4%9A%E5%8F%AA%E8%83%BD%E6%9F%A5%E8%AF%A2500%E6%9D%A1/1675757312653-eb51281d-60fd-4c0e-8669-784e7f5f59ec.png" alt="image"></li><li><img src="/2023/02/08/%E5%85%B3%E4%BA%8EMybatisPlus%E5%88%86%E9%A1%B5%E6%9C%80%E5%A4%9A%E5%8F%AA%E8%83%BD%E6%9F%A5%E8%AF%A2500%E6%9D%A1/1675757441537-ad827cc7-452c-4088-9cd8-f2737f29e4b8.png" alt="image"></li></ol></li></ol><p><a name="rpz1A"></a></p><h4 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h4><p>修改PaginationInterceptor类中的limit属性。<br>将以下代码放入application启动类中：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span><br><span class="hljs-keyword">public</span> PaginationInterceptor <span class="hljs-title function_">paginationInterceptor</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">PaginationInterceptor</span> <span class="hljs-variable">paginationInterceptor</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PaginationInterceptor</span>();<br>    <span class="hljs-comment">// 设置请求的页面大于最大页后操作， true调回到首页，false 继续请求  默认false</span><br>    <span class="hljs-comment">// paginationInterceptor.setOverflow(false);</span><br>    <span class="hljs-comment">// 设置最大单页限制数量，默认 500 条，-1 不受限制</span><br>     paginationInterceptor.setLimit(-<span class="hljs-number">1</span>);<br>    <span class="hljs-comment">// 开启 count 的 join 优化,只针对部分 left join</span><br>    paginationInterceptor.setCountSqlParser(<span class="hljs-keyword">new</span> <span class="hljs-title class_">JsqlParserCountOptimize</span>(<span class="hljs-literal">true</span>));<br>    <span class="hljs-keyword">return</span> paginationInterceptor;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程经验</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>链路追踪Skywalking+MySQL实战部署</title>
+    <link href="/2023/02/03/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AASkywalking-MySQL%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/"/>
+    <url>/2023/02/03/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AASkywalking-MySQL%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/</url>
+    
+    <content type="html"><![CDATA[<h2 id="一、链路追踪skywalking"><a href="#一、链路追踪skywalking" class="headerlink" title="一、链路追踪skywalking"></a>一、链路追踪skywalking</h2><h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3><ul><li>什么是链路追踪</li></ul><p>随着微服务分布式系统变得日趋复杂，越来越多的组件开始走向分布式化，如分布式服务、分布式数据库、分布式缓存等，使得后台服务构成了一种复杂的分布式网络。在服务能力提升的同时，复杂的网络结构也使问题定位更加困难。在一个请求在经过诸多服务过程中，出现了某一个调用失败的情况，查询具体的异常由哪一个服务引起的就变得十分抓狂，问题定位和处理效率是也会非常低。</p><p>分布式链路追踪就是将一次分布式请求还原成调用链路，将一次分布式请求的调用情况集中展示，比如各个服务节点上的耗时、请求具体到达哪台机器上、每个服务节点的请求状态等等。</p><ul><li>为什么要使用链路追踪</li></ul><p>链路追踪为分布式应用的开发者提供了完整的调用链路还原、调用请求量统计、链路拓扑、应用依赖分析等工具，可以帮助开发者快速分析和诊断分布式应用架构下的性能瓶颈，提高微服务时代下的开发诊断效率。</p><ul><li>skywalking 链路追踪</li></ul><p>SkyWalking是一个可观测性分析平台（Observability Analysis Platform 简称OAP）和应用性能管理系统（Application Performance Management 简称 APM）。</p><p>提供分布式链路追踪，服务网格（Service Mesh）遥测分析，度量（Metric）聚合和可视化一体化解决方案。</p><p>SkyWalking 特点</p><ul><li>多语言自动探针，java，.Net Code ,Node.Js</li><li>多监控手段，语言探针和Service Mesh</li><li>轻量高效，不需要额外搭建大数据平台</li><li>模块化架构，UI ，存储《集群管理多种机制可选</li><li>支持警告</li><li>优秀的可视化效果。</li></ul><h2 id="二、Skywalking环境部署"><a href="#二、Skywalking环境部署" class="headerlink" title="二、Skywalking环境部署"></a>二、Skywalking环境部署</h2><h3 id="2-1-简介"><a href="#2-1-简介" class="headerlink" title="2.1 简介"></a>2.1 简介</h3><p>部署版本：skywalking8.5</p><p>skywalking环境主要分为三个部分：</p><ol><li>skywalking-oap 核心服务</li><li>skywalking-ui  可视化操作界面</li><li>skywalking-agent 需要部署到监控的每个微服务中，起到发送监控数据到skywalking-oap中的作用</li></ol><p><img src="/2023/02/03/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AASkywalking-MySQL%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/skywalking-%E6%97%B6%E5%BA%8F%E5%9B%BE.svg" alt="img"></p><h3 id="2-2-Docker单机部署"><a href="#2-2-Docker单机部署" class="headerlink" title="2.2 Docker单机部署"></a>2.2 Docker单机部署</h3><h4 id="skywalking-oap部署"><a href="#skywalking-oap部署" class="headerlink" title="skywalking-oap部署"></a>skywalking-oap部署</h4><ol><li>启动容器需要修改oap-server中的配置：注册中心配置（没有可以不配置）、持久化配置。<ol><li>配置文件地址：apache-skywalking-apm根目录 -&gt; config -&gt; application.yml</li><li>个人不建议在此文件中配置，可以使用环境变量替换配置值</li></ol></li><li>如果需要使用MySQL做持久化，还需要将mysql-connector-java.jar传入到skywalking-oap容器内部的&#x2F;skywalking&#x2F;oap-libs&#x2F;目录下。</li><li>制作Dockerfile</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs shell">FROM apache/skywalking-oap-server:8.5.0-es7<br>MAINTAINER chenxin<br>COPY oap-libs/mysql-connector-java-5.1.47.jar /skywalking/oap-libs/mysql-connector-java-5.1.47.jar<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">【可选】告警功能配置 详细见下文告警功能配置部分</span><br>COPY alarm-settings.yml /skywalking/config/alarm-settings.yml<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">声明容器访问端口</span><br>EXPOSE 1234<br>EXPOSE 11800<br>EXPOSE 12800<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">环境变量</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">持久化使用MySQL</span><br>ENV SW_STORAGE=mysql SW_JDBC_URL=&quot;jdbc:mysql://xxx.xx.xx.xx:3306/skywalking&quot; SW_DATA_SOURCE_USER=root SW_DATA_SOURCE_PASSWORD=123456<br><span class="hljs-meta prompt_"># </span><span class="language-bash">数据清理间隔日期：1天</span><br>ENV SW_CORE_METRICS_DATA_TTL=1 SW_CORE_RECORD_DATA_TTL=1<br></code></pre></td></tr></table></figure><ol><li>容器启动命令</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">启动容器</span><br>docker run --name skywalking-mysql -d \<br>-p 1234:1234 -p 11800:11800 -p 12800:12800 --restart always skywalking-mysql<br></code></pre></td></tr></table></figure><h4 id="skywalking-ui部署"><a href="#skywalking-ui部署" class="headerlink" title="skywalking-ui部署"></a>skywalking-ui部署</h4><ol><li>只需要配置skywalking-oap-server的地址即可，直接使用docker run命令启动</li><li>容器启动命令。 [skywalking-mysql]是skywalking-oap的容器名</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run --name skywalking-mysql-ui -d -p 8888:8080 --restart always \<br>--link skywalking-mysql -e SW_OAP_ADDRESS=skywalking-mysql:12800 \<br>apache/skywalking-ui:8.5.0<br></code></pre></td></tr></table></figure><h2 id="三、项目接入部署"><a href="#三、项目接入部署" class="headerlink" title="三、项目接入部署"></a>三、项目接入部署</h2><h3 id="3-1-在服务中部署agent代理"><a href="#3-1-在服务中部署agent代理" class="headerlink" title="3.1 在服务中部署agent代理"></a>3.1 在服务中部署agent代理</h3><h4 id="1-服务部署添加agent"><a href="#1-服务部署添加agent" class="headerlink" title="1. 服务部署添加agent"></a>1. 服务部署添加agent</h4><ol><li>将skywalking-agent中agent目录放入容器中，如下图的：COPY skywalking-agent&#x2F;agent &#x2F;agent&#x2F;</li><li>修改环境遍历配置，指定skywalking-oap-server的地址</li><li>在Java启动命令中使用javaagent命令配置代理信息</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs shell">FROM java:8<br>MAINTAINER chenxin<br>COPY java-study-1.0-SNAPSHOT.jar java-study.jar<br>EXPOSE 8080<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">1. 将skywalking-agent中agent目录放入容器中</span><br>COPY skywalking-agent/agent /agent/<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">开启追踪白名单插件（文件在skywalking-agent项目包内）</span><br>COPY agent/optional-plugins/apm-trace-ignore-plugin-8.5.0.jar /agent/plugins/apm-trace-ignore-plugin-8.5.0.jar<br><span class="hljs-meta prompt_"># </span><span class="language-bash">配置追踪白名单（见下文）</span><br>COPY apm-trace-ignore-plugin.config /agent/config/apm-trace-ignore-plugin.config<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">2. 环境变量配置 接入我们的skywalking-server</span><br>ENV SW_AGENT_COLLECTOR_BACKEND_SERVICES=xxx.xxx.xx.xx:11800 SW_GRPC_LOG_SERVER_HOST=xxx.xxx.xx.xx<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">3. 勾子配置  -javaagent:/agent/skywalking-agent.jar=agent.service_name=java-study</span><br>ENTRYPOINT [&quot;java&quot;, &quot;-javaagent:/agent/skywalking-agent.jar=agent.service_name=java-study&quot;,&quot;-Duser.timezone=GMT+08&quot;,&quot;-Xms128m&quot;,&quot;-Xmx128m&quot;, &quot;-jar&quot;, &quot;java-study.jar&quot;]<br></code></pre></td></tr></table></figure><h4 id="2-追踪白名单配置"><a href="#2-追踪白名单配置" class="headerlink" title="2. 追踪白名单配置"></a>2. 追踪白名单配置</h4><p>防止redis、注册中心等心跳检测，以及Mysql的连接请求刷出大量追踪记录</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim apm-trace-ignore-plugin.config<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">写入以下内容</span><br>trace.ignore_path=$&#123;SW_AGENT_TRACE_IGNORE_PATH:Redisson/**,Mysql/JDBI/Connection/**,Mysql/JDBI/Statement/**&#125;<br></code></pre></td></tr></table></figure><h4 id="2-应用日志打印加入追踪id（定位日志）"><a href="#2-应用日志打印加入追踪id（定位日志）" class="headerlink" title="2. 应用日志打印加入追踪id（定位日志）"></a>2. 应用日志打印加入追踪id（定位日志）</h4><p>具体配置见下文 3.2</p><h2 id="四、可选配置"><a href="#四、可选配置" class="headerlink" title="四、可选配置"></a>四、可选配置</h2><h3 id="4-1-告警功能配置【可选】"><a href="#4-1-告警功能配置【可选】" class="headerlink" title="4.1 告警功能配置【可选】"></a>4.1 告警功能配置【可选】</h3><ol><li>修改替换skywalking-oap-server中的config&#x2F;alarm-settings.yml文件，修改其中webhooks地址(通知地址)</li><li>实现通知notify接口（接口只能为POST）</li></ol><h3 id="4-2-应用日志打印加入追踪id（定位日志）"><a href="#4-2-应用日志打印加入追踪id（定位日志）" class="headerlink" title="4.2 应用日志打印加入追踪id（定位日志）"></a>4.2 应用日志打印加入追踪id（定位日志）</h3><p>方案：修改项目日志打印格式，配置自定义参数tradeId，使每一行日志都能输出对应追踪id。</p><p>详情可以参考我的另一篇文章：关于Java配置自定义日志格式、自定义参数问题</p><p>使用示例：</p><p><img src="/2023/02/03/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AASkywalking-MySQL%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/log_1.png" alt="img"></p><p><img src="/2023/02/03/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AASkywalking-MySQL%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/trade_1.png" alt="img"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>架构</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>中间件部署</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>MySQL运维常用SQL命令</title>
+    <link href="/2023/02/03/MySQL%E8%BF%90%E7%BB%B4%E5%B8%B8%E7%94%A8SQL%E5%91%BD%E4%BB%A4/"/>
+    <url>/2023/02/03/MySQL%E8%BF%90%E7%BB%B4%E5%B8%B8%E7%94%A8SQL%E5%91%BD%E4%BB%A4/</url>
+    
+    <content type="html"><![CDATA[<h3 id="常用查询命令"><a href="#常用查询命令" class="headerlink" title="常用查询命令"></a>常用查询命令</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查询全表数据容量大小</span><br><span class="hljs-keyword">select</span><br>table_schema <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;数据库&#x27;</span>,<br>table_name <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;表名&#x27;</span>,<br>table_rows <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;记录数&#x27;</span>,<br><span class="hljs-keyword">truncate</span>(data_length<span class="hljs-operator">/</span><span class="hljs-number">1024</span><span class="hljs-operator">/</span><span class="hljs-number">1024</span>, <span class="hljs-number">2</span>) <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;数据容量(MB)&#x27;</span>,<br><span class="hljs-keyword">truncate</span>(index_length<span class="hljs-operator">/</span><span class="hljs-number">1024</span><span class="hljs-operator">/</span><span class="hljs-number">1024</span>, <span class="hljs-number">2</span>) <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;索引容量(MB)&#x27;</span><br><span class="hljs-keyword">from</span> information_schema.tables<br><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> data_length <span class="hljs-keyword">desc</span>, index_length <span class="hljs-keyword">desc</span>;<br></code></pre></td></tr></table></figure><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查询正在运行的SQL及运行状态</span><br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> information_schema.INNODB_TRX<br></code></pre></td></tr></table></figure><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查询正在被使用的表</span><br><span class="hljs-keyword">show</span> <span class="hljs-keyword">OPEN</span> TABLES <span class="hljs-keyword">where</span> In_use <span class="hljs-operator">&gt;</span> <span class="hljs-number">0</span>;<br></code></pre></td></tr></table></figure><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查询被锁住了的表</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> INFORMATION_SCHEMA.INNODB_LOCKS;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据库</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MySQL</tag>
+      
+      <tag>工具方法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>关于Java配置自定义日志格式问题</title>
+    <link href="/2023/02/03/%E5%85%B3%E4%BA%8E%E4%BF%AE%E6%94%B9Java%E9%A1%B9%E7%9B%AE%E6%97%A5%E5%BF%97%E6%A0%BC%E5%BC%8F%E9%97%AE%E9%A2%98/"/>
+    <url>/2023/02/03/%E5%85%B3%E4%BA%8E%E4%BF%AE%E6%94%B9Java%E9%A1%B9%E7%9B%AE%E6%97%A5%E5%BF%97%E6%A0%BC%E5%BC%8F%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<h3 id="常见的日志框架及修改方式"><a href="#常见的日志框架及修改方式" class="headerlink" title="常见的日志框架及修改方式"></a>常见的日志框架及修改方式</h3><blockquote><p>如果要修改项目的日志输出格式，首先需要明确，当前项目使用的是哪种日志输出框架。</p></blockquote><h4 id="Logback日志（spring项目默认）"><a href="#Logback日志（spring项目默认）" class="headerlink" title="Logback日志（spring项目默认）"></a>Logback日志（spring项目默认）</h4><ol><li><p>引入logback-spring.xml</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span> <span class="hljs-attr">scan</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">scanPeriod</span>=<span class="hljs-string">&quot;60 seconds&quot;</span> <span class="hljs-attr">debug</span>=<span class="hljs-string">&quot;false&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">contextName</span>&gt;</span>logback<span class="hljs-tag">&lt;/<span class="hljs-name">contextName</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--这里对应项目的基础配置文件--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;application.yml&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">springProperty</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">&quot;context&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;serverName&quot;</span> <span class="hljs-attr">source</span>=<span class="hljs-string">&quot;spring.application.name&quot;</span>/&gt;</span><br><br>    <span class="hljs-comment">&lt;!--配置自定义参数规则类的位置--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">conversionRule</span> <span class="hljs-attr">conversionWord</span>=<span class="hljs-string">&quot;traceId&quot;</span> <span class="hljs-attr">converterClass</span>=<span class="hljs-string">&quot;cn.xxx.LogbackTradeConverterConfig&quot;</span> /&gt;</span><br><br>    <span class="hljs-comment">&lt;!--输出到控制台--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">appender</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;console&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.core.ConsoleAppender&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">filter</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.classic.filter.LevelFilter&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">level</span>&gt;</span>INFO<span class="hljs-tag">&lt;/<span class="hljs-name">level</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">encoder</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">pattern</span>&gt;</span>%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; [%thread] tradeId:[%traceId] %-5level %logger&#123;36&#125; - %msg %n<span class="hljs-tag">&lt;/<span class="hljs-name">pattern</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">encoder</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">appender</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">appender</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;file&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;</span>&gt;</span><span class="hljs-comment">&lt;!-- 日志文件会滚动 --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">filter</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.classic.filter.LevelFilter&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">level</span>&gt;</span>INFO<span class="hljs-tag">&lt;/<span class="hljs-name">level</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">filter</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">encoder</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">pattern</span>&gt;</span>%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; [%thread] tradeId:[%traceId] %-5level %logger&#123;36&#125; - %msg %n<span class="hljs-tag">&lt;/<span class="hljs-name">pattern</span>&gt;</span> <span class="hljs-comment">&lt;!-- 日志文件中日志的格式 --&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">encoder</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">appender</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">root</span> <span class="hljs-attr">level</span>=<span class="hljs-string">&quot;info&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">appender-ref</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;console&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">appender-ref</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;file&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">root</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br></code></pre></td></tr></table></figure></li><li><p>application.yml中加入配置：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">logging:</span><br>  <span class="hljs-attr">config:</span> <span class="hljs-string">classpath:logback-spring.xml</span><br></code></pre></td></tr></table></figure></li><li><p>自定义参数赋值配置 - 基础ClassicConverter</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LogbackTradeConverterConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">ClassicConverter</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">convert</span><span class="hljs-params">(ILoggingEvent iLoggingEvent)</span> &#123;<br>        <span class="hljs-comment">// 返回skywalking追踪id</span><br>        <span class="hljs-keyword">return</span> TraceContext.traceId();<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure></li></ol><h4 id="Log4j"><a href="#Log4j" class="headerlink" title="Log4j"></a>Log4j</h4><ol><li><p>修改项目日志框架为log4j2</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 日志框架改为使用log4j2 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">exclusions</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">exclusion</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-logging<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">exclusion</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">exclusions</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-log4j2<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure></li><li><p>引入配置文件 log4j2.yml</p><p>其中%X{ip} 以及 %X{tradeId} 都是自定义参数</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">Appenders:</span><br>  <span class="hljs-attr">Console:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">CONSOLE</span><br>    <span class="hljs-attr">target:</span> <span class="hljs-string">SYSTEM_OUT</span><br>    <span class="hljs-attr">PatternLayout:</span><br>      <span class="hljs-attr">pattern:</span> <span class="hljs-string">&quot;%d [%X&#123;ip&#125;] [%X&#123;traceId&#125;] %-5p %m [%t] (%c) (%F:%L) %n&quot;</span><br><br><span class="hljs-attr">Loggers:</span><br>  <span class="hljs-attr">Root:</span><br>    <span class="hljs-attr">level:</span> <span class="hljs-string">info</span><br>    <span class="hljs-attr">AppenderRef:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">ref:</span> <span class="hljs-string">CONSOLE</span><br></code></pre></td></tr></table></figure></li><li><p>修改application.yml 配置</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">logging:</span><br>  <span class="hljs-attr">config:</span> <span class="hljs-string">classpath:log4j2.yml</span><br></code></pre></td></tr></table></figure></li><li><p>自定义参数赋值 - 过滤器实现</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Log4jFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Filter</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">(FilterConfig filterConfig)</span> &#123;<br>        <span class="hljs-comment">// TODO Auto-generated method stub</span><br>    &#125;<br><br>    <span class="hljs-meta">@Trace</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doFilter</span><span class="hljs-params">(ServletRequest request, ServletResponse response, FilterChain chain)</span><br>            <span class="hljs-keyword">throws</span> IOException, ServletException &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">ip</span> <span class="hljs-operator">=</span> request.getRemoteAddr();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">traceId</span> <span class="hljs-operator">=</span> TraceContext.traceId();<br>        MDC.put(<span class="hljs-string">&quot;ip&quot;</span>, ip);<br>        MDC.put(<span class="hljs-string">&quot;traceId&quot;</span>, traceId);<br>        chain.doFilter(request, response);<br>        MDC.remove(<span class="hljs-string">&quot;ip&quot;</span>);<br>        MDC.remove(<span class="hljs-string">&quot;traceId&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">destroy</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">// TODO Auto-generated method stub</span><br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程经验</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>

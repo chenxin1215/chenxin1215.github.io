@@ -1,0 +1,839 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" href="/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Keep">
+  <meta name="keywords" content="博客">
+  
+    <meta name="description" content="准备工作vm软件软件官网下载地址：https:&#x2F;&#x2F;customerconnect.vmware.com&#x2F;cn&#x2F;downloads&#x2F;#all_productswindows版本：搜索workstation 许可证：YF390-0HF8P-M81RQ-2DXQE-M2UT6 mac版本：搜索fusion 镜像文件centos镜像下载地址：http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟机安装与网络配置">
+<meta property="og:url" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="keep blog">
+<meta property="og:description" content="准备工作vm软件软件官网下载地址：https:&#x2F;&#x2F;customerconnect.vmware.com&#x2F;cn&#x2F;downloads&#x2F;#all_productswindows版本：搜索workstation 许可证：YF390-0HF8P-M81RQ-2DXQE-M2UT6 mac版本：搜索fusion 镜像文件centos镜像下载地址：http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;centos">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image1.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image2.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image3.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image4.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image5.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image6.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image7.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image8.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image9.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image10.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image11.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image12.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image13.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image14.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image15.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image16.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image17.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image18.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image19.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image20.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image21.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image22.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image23.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image24.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image25.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image26.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image27.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image28.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image29.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image30.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image31.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image32.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image33.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image34.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image35.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image36.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image37.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image38.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image39.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image40.png">
+<meta property="og:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image41.png">
+<meta property="article:published_time" content="2023-09-03T12:12:04.000Z">
+<meta property="article:modified_time" content="2023-09-03T12:43:05.702Z">
+<meta property="article:author" content="Keep">
+<meta property="article:tag" content="虚拟机">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.comde/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image1.png">
+  
+  
+  
+  <title>虚拟机安装与网络配置 - keep blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.comde","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>阿k的个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="虚拟机安装与网络配置"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-03 20:12" pubdate>
+          2023年9月3日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">虚拟机安装与网络配置</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><h4 id="vm软件"><a href="#vm软件" class="headerlink" title="vm软件"></a>vm软件</h4><p>软件官网下载地址：<a target="_blank" rel="noopener" href="https://customerconnect.vmware.com/cn/downloads/#all_products">https://customerconnect.vmware.com/cn/downloads/#all_products</a><br>windows版本：搜索workstation<br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>许可证：YF390-0HF8P-M81RQ-2DXQE-M2UT6</p>
+<p>mac版本：搜索fusion<br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image2.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h4 id="镜像文件"><a href="#镜像文件" class="headerlink" title="镜像文件"></a>镜像文件</h4><p>centos镜像下载地址：<a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/centos/7/isos/x86_64/">http://mirrors.aliyun.com/centos/7/isos/x86_64&#x2F;</a><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image3.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="一、创建虚拟机，以centos为例"><a href="#一、创建虚拟机，以centos为例" class="headerlink" title="一、创建虚拟机，以centos为例"></a>一、创建虚拟机，以centos为例</h3><ol>
+<li>新建虚拟机 选择自定义</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image4.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="2">
+<li>硬盘兼容性 选择默认即可</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image5.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="3">
+<li>装客户机操作系统 选择稍后安装（因为tfwf要在虚拟机安装完成之后，把不需要的硬件删除，所以选择稍后安装操作系统）</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image6.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="4">
+<li>选择客户机操作系统 选择linux -&gt; CentOS 7 64位； 注意对应下载的镜像文件版本</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image7.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="5">
+<li>命名虚拟机、位置； 最好把位置放在一个同一的文件夹</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image8.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="6">
+<li>处理器配置（注意不能超过主机的核心数）</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image9.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="7">
+<li>内存配置，一般配置2G既可，如果需要安装Gitlab、jenkins之类的 必须增大内存</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image10.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="8">
+<li>网络配置 选择桥接网络（虚拟机可以与主机使用同一网络）</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image11.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="9">
+<li>选择I&#x2F;O控制器类型 默认选项； 磁盘类型 默认选项</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image12.png" srcset="/img/loading.gif" lazyload alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image13.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="10">
+<li>选择磁盘 -&gt; 创建新的磁盘</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image14.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="11">
+<li>指定磁盘容量（这里是最大容量 虚拟的 不占主机内存）</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image15.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="12">
+<li>指定磁盘文件（最好不使用中文）</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image16.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="13">
+<li>自定义硬件  移除USB控制器、声卡、打印机（这样启动快一点）</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image17.png" srcset="/img/loading.gif" lazyload alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image18.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="14">
+<li>安装镜像</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image19.png" srcset="/img/loading.gif" lazyload alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image20.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="15">
+<li>开始安装虚拟机系统</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image21.png" srcset="/img/loading.gif" lazyload alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image22.png" srcset="/img/loading.gif" lazyload alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image23.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="16">
+<li>设置时区</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image24.png" srcset="/img/loading.gif" lazyload alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image25.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="17">
+<li>系统分区</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image26.png" srcset="/img/loading.gif" lazyload alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image27.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="18">
+<li>配置本机地址</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image28.png" srcset="/img/loading.gif" lazyload alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image29.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="19">
+<li>设置root管理员密码</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image30.png" srcset="/img/loading.gif" lazyload alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image31.png" srcset="/img/loading.gif" lazyload alt="img"><br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image32.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="20">
+<li>重启后出现这个页面 代表安装成功， 使用root账号登录即可</li>
+</ol>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image33.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="二、搭建VMnet8虚拟局域网"><a href="#二、搭建VMnet8虚拟局域网" class="headerlink" title="二、搭建VMnet8虚拟局域网"></a>二、搭建VMnet8虚拟局域网</h3><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image34.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>打开VMware软件，点击编辑，点击列表中的虚拟网络编辑器<br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image35.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>进入虚拟网络编辑器页面</p>
+<ul>
+<li>选择NAT模式</li>
+<li>勾选将主机虚拟适配器连接到此网络</li>
+<li>取消DHCP服务</li>
+</ul>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image36.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>子网IP和网关IP都先记下来<br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image37.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="三、CentOS系统配置"><a href="#三、CentOS系统配置" class="headerlink" title="三、CentOS系统配置"></a>三、CentOS系统配置</h3><h4 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h4><h5 id="1、配置ip地址等信息在-x2F-etc-x2F-sysconfig-x2F-network-scripts-x2F-ifcfg-ens33"><a href="#1、配置ip地址等信息在-x2F-etc-x2F-sysconfig-x2F-network-scripts-x2F-ifcfg-ens33" class="headerlink" title="1、配置ip地址等信息在&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33"></a>1、配置ip地址等信息在&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33</h5><p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image38.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<blockquote>
+<p>vi   &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33&#x2F;</p>
+</blockquote>
+<p>配置如下：（若原文件无引号，则不加引号，没有的就新增）</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">TYPE</span>=<span class="hljs-string">&quot;Ethernet&quot;</span>   <span class="hljs-comment"># 网络类型为以太网</span><br><span class="hljs-attr">BOOTPROTO</span>=<span class="hljs-string">&quot;static&quot;</span>  <span class="hljs-comment"># 手动分配ip</span><br><span class="hljs-attr">NAME</span>=<span class="hljs-string">&quot;ens33&quot;</span>  <span class="hljs-comment"># 网卡设备名，设备名一定要跟文件名一致</span><br><span class="hljs-attr">DEVICE</span>=<span class="hljs-string">&quot;ens33&quot;</span>  <span class="hljs-comment"># 网卡设备名，设备名一定要跟文件名一致</span><br><span class="hljs-attr">ONBOOT</span>=<span class="hljs-string">&quot;yes&quot;</span>  <span class="hljs-comment"># 该网卡是否随网络服务启动</span><br><span class="hljs-attr">IPADDR</span>=<span class="hljs-string">&quot;192.168.×.×&quot;</span>  <span class="hljs-comment"># 该网卡ip地址就是你要配置的固定IP</span><br><span class="hljs-attr">GATEWAY</span>=<span class="hljs-string">&quot;192.168.×.×&quot;</span>   <span class="hljs-comment"># 网关</span><br><span class="hljs-attr">NETMASK</span>=<span class="hljs-string">&quot;255.255.255.0&quot;</span>   <span class="hljs-comment"># 子网掩码</span><br><span class="hljs-attr">DNS1</span>=<span class="hljs-string">&quot;8.8.8.8&quot;</span>    <span class="hljs-comment"># DNS，8.8.8.8为Google提供的免费DNS服务器的IP地址</span><br></code></pre></td></tr></table></figure>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image39.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h5 id="2-、配置网络工作"><a href="#2-、配置网络工作" class="headerlink" title="2 、配置网络工作"></a>2 、配置网络工作</h5><pre><code class="hljs">在/etc/sysconfig/network文件里增加如下配置
+NETWORKING=yes
+</code></pre>
+<h5 id="3、配置公共DNS服务-可选-（不用选）"><a href="#3、配置公共DNS服务-可选-（不用选）" class="headerlink" title="3、配置公共DNS服务(可选)（不用选）"></a>3、配置公共DNS服务(可选)（不用选）</h5><pre><code class="hljs">在/etc/resolv.conf文件里增加如下配置
+nameserver 8.8.8.8
+</code></pre>
+<h5 id="4、关闭防护墙"><a href="#4、关闭防护墙" class="headerlink" title="4、关闭防护墙"></a>4、关闭防护墙</h5><pre><code class="hljs">systemctl stop firewalld # 临时关闭防火墙
+systemctl disable firewalld # 禁止开机启动
+</code></pre>
+<h5 id="5、重启网络服务"><a href="#5、重启网络服务" class="headerlink" title="5、重启网络服务"></a>5、重启网络服务</h5><pre><code class="hljs">service network restart
+</code></pre>
+<h5 id="6、查看网络服务"><a href="#6、查看网络服务" class="headerlink" title="6、查看网络服务"></a>6、查看网络服务</h5><pre><code class="hljs">ping 163.com
+</code></pre>
+<p>没有问题就可以使用服务器连接工具连接虚拟机了</p>
+<h3 id="四、连接虚拟机"><a href="#四、连接虚拟机" class="headerlink" title="四、连接虚拟机"></a>四、连接虚拟机</h3><p>使用刚刚配置的网卡ip地址 （IPADDR）<br><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image40.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/image41.png" srcset="/img/loading.gif" lazyload alt="img"><br>接下来就可以愉快的使用啦！</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E5%BF%85%E5%A4%87/" class="category-chain-item">编程必备</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" class="print-no-link">#虚拟机</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>虚拟机安装与网络配置</div>
+      <div>http://example.comde/2023/09/03/虚拟机安装与网络配置/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Keep</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/09/03/%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2/" title="搭建Hexo博客">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">搭建Hexo博客</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/03/Python%E7%A8%8B%E5%BA%8Fdocker%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/" title="Python程序docker实战部署">
+                        <span class="hidden-mobile">Python程序docker实战部署</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'chenxin1215/chenxin1215.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

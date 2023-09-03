@@ -1,12 +1,22 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" href="/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Keep">
+  <meta name="keywords" content="博客">
   
-  <title>keep blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="hexoDemo用于介绍如何使用hexo">
+    <meta name="description" content="hexoDemo用于介绍如何使用hexo">
 <meta property="og:type" content="website">
 <meta property="og:title" content="keep blog">
 <meta property="og:url" content="http://example.comde/index.html">
@@ -15,633 +25,910 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Keep">
 <meta property="article:tag" content="博客">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="keep blog" type="application/atom+xml">
+<meta name="twitter:card" content="summary_large_image">
   
   
-    <link rel="shortcut icon" href="/favicon.png">
   
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+  <title>keep blog</title>
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.comde","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
 
   
 <meta name="generator" content="Hexo 6.3.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">keep blog</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">这里有一个宝宝</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>阿k的个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          <a class="main-nav-link" href="/">Home</a>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
         
-      </nav>
-      <nav id="sub-nav">
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.comde"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-关于BigDecimal处理浮点类型出现的问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/02/08/%E5%85%B3%E4%BA%8EBigDecimal%E5%A4%84%E7%90%86%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
-  <time class="dt-published" datetime="2023-02-07T23:10:27.000Z" itemprop="datePublished">2023-02-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/02/08/%E5%85%B3%E4%BA%8EBigDecimal%E5%A4%84%E7%90%86%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/">关于BigDecimal处理浮点类型出现的问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>问题：new BigDecimal(3.9) 出现精度问题 </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">BigDecimal</span> <span class="variable">tempModelData</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="number">1</span>).multiply(<span class="keyword">new</span> <span class="title class_">BigDecimal</span>(<span class="number">3.9</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;tempModelData = &quot;</span> + tempModelData);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出：tempModelData = 3.899999999999999911182158029987476766109466552734375               </span></span><br></pre></td></tr></table></figure>
-
-<p>原因是3.9是浮点型，自带精度，在new BigdDecimal会把精度带过去</p>
-<p>处理：将new BigDecimal(3.9) 改为 <strong>new BigDecimal(“3.9”)</strong>  字符类型不会带精度</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.comde/2023/02/08/%E5%85%B3%E4%BA%8EBigDecimal%E5%A4%84%E7%90%86%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/" data-id="clduve9xx000b70m02rrm9o5d" data-title="关于BigDecimal处理浮点类型出现的问题" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-List复杂对象条件排序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/02/08/List%E5%A4%8D%E6%9D%82%E5%AF%B9%E8%B1%A1%E6%9D%A1%E4%BB%B6%E6%8E%92%E5%BA%8F/" class="article-date">
-  <time class="dt-published" datetime="2023-02-07T23:09:43.000Z" itemprop="datePublished">2023-02-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/02/08/List%E5%A4%8D%E6%9D%82%E5%AF%B9%E8%B1%A1%E6%9D%A1%E4%BB%B6%E6%8E%92%E5%BA%8F/">List复杂对象条件排序</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>上代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 根据创建时间排序</span></span><br><span class="line">Collections.sort(receivableDataList, <span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;SaveAccruedItemData&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(SaveAccruedItemData o1, SaveAccruedItemData o2)</span> &#123;</span><br><span class="line">        <span class="comment">// 需要比较的属性</span></span><br><span class="line">        <span class="type">Date</span> <span class="variable">key1</span> <span class="operator">=</span> o1.getOrderCreateTime();</span><br><span class="line">        <span class="type">Date</span> <span class="variable">key2</span> <span class="operator">=</span> o2.getOrderCreateTime();</span><br><span class="line">        <span class="comment">// 如果key1大返回1 否则（如果key1小于key2 返回-1 否则返回0）</span></span><br><span class="line">        <span class="keyword">return</span> key1.compareTo(key2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.comde/2023/02/08/List%E5%A4%8D%E6%9D%82%E5%AF%B9%E8%B1%A1%E6%9D%A1%E4%BB%B6%E6%8E%92%E5%BA%8F/" data-id="clduve9xs000470m04pb63ons" data-title="List复杂对象条件排序" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-ParallelStream的使用与问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/02/08/ParallelStream%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E9%97%AE%E9%A2%98/" class="article-date">
-  <time class="dt-published" datetime="2023-02-07T23:06:01.000Z" itemprop="datePublished">2023-02-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/02/08/ParallelStream%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E9%97%AE%E9%A2%98/">ParallelStream的使用与问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>parallelStream是Java流式集合操作的一种，它会使用多线程执行循环，效率更高。</p>
-<p>但是需要注意的是：</p>
-<ol>
-<li><p>数据没有很大的时候不要使用parallelStream可能比Stream还慢一些。</p>
-</li>
-<li><p>parallelStream的返回结果会打乱之前的List的顺序。</p>
-</li>
-<li><p><strong>parallelStream是线程不安全的</strong>，当你在遍历中使用，例如请求里面的数据时，就会报一个异常，这个异常就是多个线程执行，但是其他线程没有这个请求的数据，所以获取不到，<strong>解决办法是把需要的数据在遍历外面取到，再传递进去就可以解决</strong></p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.comde/2023/02/08/ParallelStream%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E9%97%AE%E9%A2%98/" data-id="clduve9xs000570m0brzd6z6s" data-title="ParallelStream的使用与问题" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Java配合Mybatis实现分词匹配" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/02/08/Java%E9%85%8D%E5%90%88Mybatis%E5%AE%9E%E7%8E%B0%E5%88%86%E8%AF%8D%E5%8C%B9%E9%85%8D/" class="article-date">
-  <time class="dt-published" datetime="2023-02-07T23:02:05.000Z" itemprop="datePublished">2023-02-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/02/08/Java%E9%85%8D%E5%90%88Mybatis%E5%AE%9E%E7%8E%B0%E5%88%86%E8%AF%8D%E5%8C%B9%E9%85%8D/">Java配合Mybatis实现分词匹配</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Java代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">public</span> List&lt;Label&gt; <span class="title function_">getRecommendLabel</span><span class="params">(String forumName)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (forumName == <span class="literal">null</span> || <span class="string">&quot;&quot;</span>.equals(forumName)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将forumName 拆分分词 得到一个List</span></span><br><span class="line">    <span class="type">Result</span> <span class="variable">parse</span> <span class="operator">=</span> ToAnalysis.parse(forumName);</span><br><span class="line">    List&lt;Term&gt; terms = parse.getTerms();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 使用这个list进行遍历模糊匹配</span></span><br><span class="line">    List&lt;Label&gt; labels = labelMapper.getRecommendLabel(terms);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> labels;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>MybatisXml:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    select</span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;Base_Column_List&quot;</span>/&gt;</span></span><br><span class="line">    from label</span><br><span class="line">    where state = 1 </span><br><span class="line">    and(</span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span> <span class="attr">item</span>=<span class="string">&quot;term&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;or&quot;</span>&gt;</span></span><br><span class="line">        label_name LIKE CONCAT(&#x27;%&#x27;, #&#123;term.name&#125;, &#x27;%&#x27;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.comde/2023/02/08/Java%E9%85%8D%E5%90%88Mybatis%E5%AE%9E%E7%8E%B0%E5%88%86%E8%AF%8D%E5%8C%B9%E9%85%8D/" data-id="clduve9xr000370m073888el0" data-title="Java配合Mybatis实现分词匹配" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-钩子函数的使用：注册监听JVM关闭" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/02/08/%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9A%E6%B3%A8%E5%86%8C%E7%9B%91%E5%90%ACJVM%E5%85%B3%E9%97%AD/" class="article-date">
-  <time class="dt-published" datetime="2023-02-07T23:00:19.000Z" itemprop="datePublished">2023-02-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/02/08/%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9A%E6%B3%A8%E5%86%8C%E7%9B%91%E5%90%ACJVM%E5%85%B3%E9%97%AD/">钩子函数的使用：注册监听JVM关闭</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Runtime.getRuntime().addShutdownHook(<span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;### 收尾的工作&quot;</span>);</span><br><span class="line">    <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (n &lt; <span class="number">10</span>) &#123;</span><br><span class="line">        System.out.println(Thread.currentThread() + <span class="string">&quot;,&quot;</span> + n++);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.comde/2023/02/08/%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9A%E6%B3%A8%E5%86%8C%E7%9B%91%E5%90%ACJVM%E5%85%B3%E9%97%AD/" data-id="clduve9y5000u70m0281lbz6h" data-title="钩子函数的使用：注册监听JVM关闭" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Spring事务设置手动回滚" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/02/08/Spring%E4%BA%8B%E5%8A%A1%E8%AE%BE%E7%BD%AE%E6%89%8B%E5%8A%A8%E5%9B%9E%E6%BB%9A/" class="article-date">
-  <time class="dt-published" datetime="2023-02-07T22:58:18.000Z" itemprop="datePublished">2023-02-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/02/08/Spring%E4%BA%8B%E5%8A%A1%E8%AE%BE%E7%BD%AE%E6%89%8B%E5%8A%A8%E5%9B%9E%E6%BB%9A/">Spring事务设置手动回滚</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>直接上代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置起始点</span></span><br><span class="line"><span class="type">Object</span> <span class="variable">savepoint</span> <span class="operator">=</span> TransactionAspectSupport.currentTransactionStatus().createSavepoint();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.check(costAdjustId, userId);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    LOGGER.error(<span class="string">&quot;批量生成成本调整单 审核调整单异常！&quot;</span>);</span><br><span class="line">    errorData.put(<span class="string">&quot;第&quot;</span> + i + <span class="string">&quot;行&quot;</span>, <span class="string">&quot;审核调整单失败！e：&quot;</span> + e.getLocalizedMessage());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置手动回滚</span></span><br><span class="line">    TransactionAspectSupport.currentTransactionStatus().rollbackToSavepoint(savepoint);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.comde/2023/02/08/Spring%E4%BA%8B%E5%8A%A1%E8%AE%BE%E7%BD%AE%E6%89%8B%E5%8A%A8%E5%9B%9E%E6%BB%9A/" data-id="clduve9xw000970m05homaocf" data-title="Spring事务设置手动回滚" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-java操作服务器执行shell" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/02/08/java%E6%93%8D%E4%BD%9C%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8Cshell/" class="article-date">
-  <time class="dt-published" datetime="2023-02-07T22:53:14.000Z" itemprop="datePublished">2023-02-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/02/08/java%E6%93%8D%E4%BD%9C%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8Cshell/">java操作服务器执行shell</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>直接上代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对象创建</span></span><br><span class="line"><span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Connection</span>(host, port);</span><br><span class="line"><span class="comment">// 登录鉴权</span></span><br><span class="line">connection.authenticateWithPassword(userName, password);</span><br><span class="line"><span class="comment">// 获取session</span></span><br><span class="line"><span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> con.openSession();</span><br><span class="line"><span class="comment">// 执行命令</span></span><br><span class="line">session.execCommand(cmds);</span><br><span class="line"></span><br><span class="line"><span class="type">InputStream</span> <span class="variable">stdOut</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StreamGobbler</span>(session.getStdout());</span><br><span class="line"><span class="type">String</span> <span class="variable">outStr</span> <span class="operator">=</span> processStream(stdOut, CHARSET);</span><br><span class="line">logger.info(<span class="string">&quot;输出结果：&quot;</span>+ outStr);</span><br><span class="line"></span><br><span class="line"><span class="type">InputStream</span> <span class="variable">stdErr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StreamGobbler</span>(session.getStderr());</span><br><span class="line"><span class="type">String</span> <span class="variable">outErr</span> <span class="operator">=</span> processStream(stdErr, CHARSET);</span><br><span class="line">session.waitForCondition(ChannelCondition.EXIT_STATUS, TIME_OUT);</span><br><span class="line">logger.info(<span class="string">&quot;执行命令&quot;</span> + cmds + <span class="string">&quot;,错误信息：&quot;</span>+ outErr);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭连接</span></span><br><span class="line">session.getExitStatus();</span><br><span class="line">session.close();</span><br></pre></td></tr></table></figure>
-
-<p>其中processStream方法代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title function_">processStream</span><span class="params">(InputStream in, String charset)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"><span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">    <span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(in));</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> br.readLine();</span><br><span class="line">        <span class="keyword">if</span>(line == <span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!line.trim().equals(<span class="string">&quot;&quot;</span>))&#123;</span><br><span class="line">        sb.append(line).append(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        &#125;      </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.comde/2023/02/08/java%E6%93%8D%E4%BD%9C%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8Cshell/" data-id="clduve9xu000870m0bk954d0o" data-title="java操作服务器执行shell" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Git的储藏弹出与摘取的用法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/02/08/Git%E7%9A%84%E5%82%A8%E8%97%8F%E5%BC%B9%E5%87%BA%E4%B8%8E%E6%91%98%E5%8F%96%E7%9A%84%E7%94%A8%E6%B3%95/" class="article-date">
-  <time class="dt-published" datetime="2023-02-07T22:51:24.000Z" itemprop="datePublished">2023-02-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/02/08/Git%E7%9A%84%E5%82%A8%E8%97%8F%E5%BC%B9%E5%87%BA%E4%B8%8E%E6%91%98%E5%8F%96%E7%9A%84%E7%94%A8%E6%B3%95/">Git的储藏弹出与摘取的用法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="Git的储藏弹出与摘取什么时候可以用到？"><a href="#Git的储藏弹出与摘取什么时候可以用到？" class="headerlink" title="Git的储藏弹出与摘取什么时候可以用到？"></a>Git的储藏弹出与摘取什么时候可以用到？</h4><p>例：<br>问题：你本来是要在b分支上开发，但是你却在a分支上已经开发完了，这个时候，你需要将你在a分支上写的代码“剪切”到b分支上。</p>
-<p>解决方法：<br>①：当你未提交代码时：<br>使用Git的储藏与弹出。 在你开发的a分支上，使用同步里的储藏功能，然后切换到你需要开发的b分支上，使用同步里的弹出功能，即可。<br>②：当你已提交代码时：<br>使用Git的摘取，切换到你需要开发的b分支上，使用摘取功能。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.comde/2023/02/08/Git%E7%9A%84%E5%82%A8%E8%97%8F%E5%BC%B9%E5%87%BA%E4%B8%8E%E6%91%98%E5%8F%96%E7%9A%84%E7%94%A8%E6%B3%95/" data-id="clduve9xd000070m03rgzh1ef" data-title="Git的储藏弹出与摘取的用法" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-语雀知识库导出md格式到本地" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/02/08/%E8%AF%AD%E9%9B%80%E7%9F%A5%E8%AF%86%E5%BA%93%E5%AF%BC%E5%87%BAmd%E6%A0%BC%E5%BC%8F%E5%88%B0%E6%9C%AC%E5%9C%B0/" class="article-date">
-  <time class="dt-published" datetime="2023-02-07T22:12:56.000Z" itemprop="datePublished">2023-02-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/02/08/%E8%AF%AD%E9%9B%80%E7%9F%A5%E8%AF%86%E5%BA%93%E5%AF%BC%E5%87%BAmd%E6%A0%BC%E5%BC%8F%E5%88%B0%E6%9C%AC%E5%9C%B0/">语雀知识库导出md格式到本地</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="1-获取语雀个人开发者Token"><a href="#1-获取语雀个人开发者Token" class="headerlink" title="1. 获取语雀个人开发者Token"></a>1. 获取语雀个人开发者Token</h4><p>访问：<a target="_blank" rel="noopener" href="https://www.yuque.com/yuque/developer/api#785a3731">https://www.yuque.com/yuque/developer/api#785a3731</a></p>
-<h4 id="2-安装nodeJs"><a href="#2-安装nodeJs" class="headerlink" title="2. 安装nodeJs"></a>2. 安装nodeJs</h4><h4 id="3-导出"><a href="#3-导出" class="headerlink" title="3. 导出"></a>3. 导出</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">以下命令为Windows系统操作</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装node依赖</span></span><br><span class="line">npm i -g yuque-exporter --registry=https://registry.npmmirror.com</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置token环境变量</span></span><br><span class="line">set YUQUE_TOKEN=&lt;your_token&gt;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">导出全部知识库到当前文件夹</span></span><br><span class="line">yuque-exporter &lt;个人账号，如:chenxin-uxuze&gt;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.comde/2023/02/08/%E8%AF%AD%E9%9B%80%E7%9F%A5%E8%AF%86%E5%BA%93%E5%AF%BC%E5%87%BAmd%E6%A0%BC%E5%BC%8F%E5%88%B0%E6%9C%AC%E5%9C%B0/" data-id="clduve9y1000i70m05ivod6fk" data-title="语雀知识库导出md格式到本地" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-关于MybatisPlus分页最多只能查询500条" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/02/08/%E5%85%B3%E4%BA%8EMybatisPlus%E5%88%86%E9%A1%B5%E6%9C%80%E5%A4%9A%E5%8F%AA%E8%83%BD%E6%9F%A5%E8%AF%A2500%E6%9D%A1/" class="article-date">
-  <time class="dt-published" datetime="2023-02-07T22:00:44.000Z" itemprop="datePublished">2023-02-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/02/08/%E5%85%B3%E4%BA%8EMybatisPlus%E5%88%86%E9%A1%B5%E6%9C%80%E5%A4%9A%E5%8F%AA%E8%83%BD%E6%9F%A5%E8%AF%A2500%E6%9D%A1/">关于MybatisPlus分页最多只能查询500条</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="源码跟踪分析"><a href="#源码跟踪分析" class="headerlink" title="源码跟踪分析"></a>源码跟踪分析</h4><ol>
-<li>所有的使用自带的Page对象分页的方法全部被限制了500条，所以很容易想到是对Page类中的size属性做了限制。</li>
-<li>查看Page类中的setSize方法的调用方，找到PaginationInterceptor类<ol>
-<li><img src="/2023/02/08/%E5%85%B3%E4%BA%8EMybatisPlus%E5%88%86%E9%A1%B5%E6%9C%80%E5%A4%9A%E5%8F%AA%E8%83%BD%E6%9F%A5%E8%AF%A2500%E6%9D%A1/1675757263070-13603bf4-3db0-43c7-843c-bdb0ec7af716.png" alt="image"></li>
-<li><img src="/2023/02/08/%E5%85%B3%E4%BA%8EMybatisPlus%E5%88%86%E9%A1%B5%E6%9C%80%E5%A4%9A%E5%8F%AA%E8%83%BD%E6%9F%A5%E8%AF%A2500%E6%9D%A1/1675757312653-eb51281d-60fd-4c0e-8669-784e7f5f59ec.png" alt="image"></li>
-<li><img src="/2023/02/08/%E5%85%B3%E4%BA%8EMybatisPlus%E5%88%86%E9%A1%B5%E6%9C%80%E5%A4%9A%E5%8F%AA%E8%83%BD%E6%9F%A5%E8%AF%A2500%E6%9D%A1/1675757441537-ad827cc7-452c-4088-9cd8-f2737f29e4b8.png" alt="image"></li>
-</ol>
-</li>
-</ol>
-<p><a name="rpz1A"></a></p>
-<h4 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h4><p>修改PaginationInterceptor类中的limit属性。<br>将以下代码放入application启动类中：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> PaginationInterceptor <span class="title function_">paginationInterceptor</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">PaginationInterceptor</span> <span class="variable">paginationInterceptor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PaginationInterceptor</span>();</span><br><span class="line">    <span class="comment">// 设置请求的页面大于最大页后操作， true调回到首页，false 继续请求  默认false</span></span><br><span class="line">    <span class="comment">// paginationInterceptor.setOverflow(false);</span></span><br><span class="line">    <span class="comment">// 设置最大单页限制数量，默认 500 条，-1 不受限制</span></span><br><span class="line">     paginationInterceptor.setLimit(-<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 开启 count 的 join 优化,只针对部分 left join</span></span><br><span class="line">    paginationInterceptor.setCountSqlParser(<span class="keyword">new</span> <span class="title class_">JsqlParserCountOptimize</span>(<span class="literal">true</span>));</span><br><span class="line">    <span class="keyword">return</span> paginationInterceptor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.comde/2023/02/08/%E5%85%B3%E4%BA%8EMybatisPlus%E5%88%86%E9%A1%B5%E6%9C%80%E5%A4%9A%E5%8F%AA%E8%83%BD%E6%9F%A5%E8%AF%A2500%E6%9D%A1/" data-id="clduve9y0000g70m0ak3xd160" data-title="关于MybatisPlus分页最多只能查询500条" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 10px;">其他</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 10px;">运维</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2023/02/08/%E5%85%B3%E4%BA%8EBigDecimal%E5%A4%84%E7%90%86%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/">关于BigDecimal处理浮点类型出现的问题</a>
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
           </li>
+          
         
-          <li>
-            <a href="/2023/02/08/List%E5%A4%8D%E6%9D%82%E5%AF%B9%E8%B1%A1%E6%9D%A1%E4%BB%B6%E6%8E%92%E5%BA%8F/">List复杂对象条件排序</a>
-          </li>
         
-          <li>
-            <a href="/2023/02/08/ParallelStream%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E9%97%AE%E9%A2%98/">ParallelStream的使用与问题</a>
-          </li>
-        
-          <li>
-            <a href="/2023/02/08/Java%E9%85%8D%E5%90%88Mybatis%E5%AE%9E%E7%8E%B0%E5%88%86%E8%AF%8D%E5%8C%B9%E9%85%8D/">Java配合Mybatis实现分词匹配</a>
-          </li>
-        
-          <li>
-            <a href="/2023/02/08/%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9A%E6%B3%A8%E5%86%8C%E7%9B%91%E5%90%ACJVM%E5%85%B3%E9%97%AD/">钩子函数的使用：注册监听JVM关闭</a>
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
     </div>
   </div>
+</nav>
 
   
-</aside>
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/home_page_black.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Welcome to my world;"></span>
+          
+        </div>
+
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+
       
-      &copy; 2023 Keep<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
   </div>
-</footer>
+</div>
 
-    </div>
-    <nav id="mobile-nav">
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/09/03/%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2/" target="_self">
+          搭建Hexo博客
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/03/%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2/" target="_self">
+        <div>
+          hexo是什么Hexo是一个博客框架，使用markdown语法写作，一键编译生成静态文件，一键部署到github或gitlab等。 初始化hexo博客项目首先安装node环境，然后全局安装 hexo-cli ： 1cnpm install -g hexo-cli 安装成功后，使用 hexo init 命令初始化项目： 1hexo init myblog  # 会在当前目录下创建一个myblog目录
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-09-03 20:49" pubdate>
+              2023-09-03
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" target="_self">
+          虚拟机安装与网络配置
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/03/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" target="_self">
+        <div>
+          准备工作vm软件软件官网下载地址：https://customerconnect.vmware.com/cn/downloads/#all_productswindows版本：搜索workstation 许可证：YF390-0HF8P-M81RQ-2DXQE-M2UT6 mac版本：搜索fusion 镜像文件centos镜像下载地址：http://mirrors.aliyun.com/centos
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-09-03 20:12" pubdate>
+              2023-09-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
   
-    <a href="/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E5%BF%85%E5%A4%87/" class="category-chain-item">编程必备</a>
   
-</nav>
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/">#虚拟机</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/09/03/Python%E7%A8%8B%E5%BA%8Fdocker%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/" target="_self">
+          Python程序docker实战部署
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/03/Python%E7%A8%8B%E5%BA%8Fdocker%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2/" target="_self">
+        <div>
+          本文介绍python程序如何制作成docker镜像，并部署在线上服务器上。 一、python基础认知1. 包在一个文件夹中存在一个__init__.py文件，python就会认为这个文件夹是一个包可以在__init__.py文件中做一些初始化的配置、操作等 2. 程序执行与主函数Python是一种解释型编程语言。Python程序没有显式的”main()”函数入口点。在Python中，程序的执行从文
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-09-03 19:55" pubdate>
+              2023-09-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%9E%B6%E6%9E%84/" class="category-chain-item">架构</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/python/">#python</a>
+            
+              <a href="/tags/docker/">#docker</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/02/08/%E5%85%B3%E4%BA%8EBigDecimal%E5%A4%84%E7%90%86%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/" target="_self">
+          关于BigDecimal处理浮点类型出现的问题
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/02/08/%E5%85%B3%E4%BA%8EBigDecimal%E5%A4%84%E7%90%86%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/" target="_self">
+        <div>
+          问题：new BigDecimal(3.9) 出现精度问题  1234BigDecimal tempModelData = new BigDecimal(1).multiply(new BigDecimal(3.9));System.out.println(&quot;tempModelData = &quot; + tempModelData);// 输出：tempModelData = 3.8
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-02-08 07:10" pubdate>
+              2023-02-08
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E7%BB%8F%E9%AA%8C/" class="category-chain-item">编程经验</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">#Java</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/02/08/List%E5%A4%8D%E6%9D%82%E5%AF%B9%E8%B1%A1%E6%9D%A1%E4%BB%B6%E6%8E%92%E5%BA%8F/" target="_self">
+          List复杂对象条件排序
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/02/08/List%E5%A4%8D%E6%9D%82%E5%AF%B9%E8%B1%A1%E6%9D%A1%E4%BB%B6%E6%8E%92%E5%BA%8F/" target="_self">
+        <div>
+          上代码： 12345678910111213// 根据创建时间排序Collections.sort(receivableDataList, new Comparator&lt;SaveAccruedItemData&gt;() &#123;    @Override    public int compare(SaveAccruedItemData o1, SaveAccruedItemData
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-02-08 07:09" pubdate>
+              2023-02-08
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E7%BB%8F%E9%AA%8C/" class="category-chain-item">编程经验</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">#Java</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/02/08/ParallelStream%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E9%97%AE%E9%A2%98/" target="_self">
+          ParallelStream的使用与问题
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/02/08/ParallelStream%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E9%97%AE%E9%A2%98/" target="_self">
+        <div>
+          parallelStream是Java流式集合操作的一种，它会使用多线程执行循环，效率更高。 但是需要注意的是：  数据没有很大的时候不要使用parallelStream可能比Stream还慢一些。  parallelStream的返回结果会打乱之前的List的顺序。  parallelStream是线程不安全的，当你在遍历中使用，例如请求里面的数据时，就会报一个异常，这个异常就是多个线程执行，但
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-02-08 07:06" pubdate>
+              2023-02-08
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E7%BB%8F%E9%AA%8C/" class="category-chain-item">编程经验</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">#Java</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/02/08/Java%E9%85%8D%E5%90%88Mybatis%E5%AE%9E%E7%8E%B0%E5%88%86%E8%AF%8D%E5%8C%B9%E9%85%8D/" target="_self">
+          Java配合Mybatis实现分词匹配
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/02/08/Java%E9%85%8D%E5%90%88Mybatis%E5%AE%9E%E7%8E%B0%E5%88%86%E8%AF%8D%E5%8C%B9%E9%85%8D/" target="_self">
+        <div>
+          Java代码： 12345678910111213    public List&lt;Label&gt; getRecommendLabel(String forumName) &#123;    if (forumName == null || &quot;&quot;.equals(forumName)) &#123;        return null;    &#125;    //
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-02-08 07:02" pubdate>
+              2023-02-08
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C/" class="category-chain-item">经验</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">#Java</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/02/08/%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9A%E6%B3%A8%E5%86%8C%E7%9B%91%E5%90%ACJVM%E5%85%B3%E9%97%AD/" target="_self">
+          钩子函数的使用：注册监听JVM关闭
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/02/08/%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9A%E6%B3%A8%E5%86%8C%E7%9B%91%E5%90%ACJVM%E5%85%B3%E9%97%AD/" target="_self">
+        <div>
+          代码： 1234567891011121314Runtime.getRuntime().addShutdownHook(new Thread(() -&gt; &#123;    System.out.println(&quot;### 收尾的工作&quot;);    int n = 0;    while (n &lt; 10) &#123;        System.out.println
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-02-08 07:00" pubdate>
+              2023-02-08
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E7%BB%8F%E9%AA%8C/" class="category-chain-item">编程经验</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">#Java</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/02/08/Spring%E4%BA%8B%E5%8A%A1%E8%AE%BE%E7%BD%AE%E6%89%8B%E5%8A%A8%E5%9B%9E%E6%BB%9A/" target="_self">
+          Spring事务设置手动回滚
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/02/08/Spring%E4%BA%8B%E5%8A%A1%E8%AE%BE%E7%BD%AE%E6%89%8B%E5%8A%A8%E5%9B%9E%E6%BB%9A/" target="_self">
+        <div>
+          直接上代码： 1234567891011// 设置起始点Object savepoint = TransactionAspectSupport.currentTransactionStatus().createSavepoint();try &#123;    this.check(costAdjustId, userId);&#125; catch (Exception e) &#123;
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-02-08 06:58" pubdate>
+              2023-02-08
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E7%BB%8F%E9%AA%8C/" class="category-chain-item">编程经验</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">#Java</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/02/08/java%E6%93%8D%E4%BD%9C%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8Cshell/" target="_self">
+          java操作服务器执行shell
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/02/08/java%E6%93%8D%E4%BD%9C%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8Cshell/" target="_self">
+        <div>
+          直接上代码 123456789101112131415161718192021// 对象创建Connection connection = new Connection(host, port);// 登录鉴权connection.authenticateWithPassword(userName, password);// 获取sessionSession session = con.openSe
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-02-08 06:53" pubdate>
+              2023-02-08
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E7%BB%8F%E9%AA%8C/" class="category-chain-item">编程经验</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">#Java</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="/js/jquery-3.4.1.min.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
 
-<script src="/js/script.js"></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-  </div>
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
