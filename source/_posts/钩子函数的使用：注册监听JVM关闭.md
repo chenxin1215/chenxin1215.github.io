@@ -1,7 +1,9 @@
 ---
 title: 钩子函数的使用：注册监听JVM关闭
 date: 2023-02-08 07:00:19
-tags: Java
+tags: 
+    - Java
+categories: 编程经验
 ---
 
 代码：

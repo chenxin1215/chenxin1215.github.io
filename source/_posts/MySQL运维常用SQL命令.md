@@ -1,7 +1,10 @@
 ---
 title: MySQL运维常用SQL命令
 date: 2023-02-03 13:29:10
-tags: MySQL
+tags:
+    - MySQL
+    - 工具方法
+categories: 数据库
 ---
 
 ### 常用查询命令

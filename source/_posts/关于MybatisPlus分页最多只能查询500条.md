@@ -1,7 +1,9 @@
 ---
 title: 关于MybatisPlus分页最多只能查询500条
 date: 2023-02-08 06:00:44
-tags: Java
+tags: 
+    - Java
+categories: 编程经验
 ---
 
 #### 源码跟踪分析

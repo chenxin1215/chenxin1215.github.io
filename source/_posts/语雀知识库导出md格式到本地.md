@@ -1,7 +1,9 @@
 ---
 title: 语雀知识库导出md格式到本地
 date: 2023-02-08 06:12:56
-tags: 其他
+tags: 
+    - 语雀
+categories: 其他
 ---
 
 

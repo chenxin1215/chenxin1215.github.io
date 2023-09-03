@@ -1,7 +1,9 @@
 ---
 title: 链路追踪Skywalking+MySQL实战部署
 date: 2023-02-03 16:51:27
-tags: 运维
+tags: 
+   - 中间件部署
+categories: 架构
 ---
 
 ## 一、链路追踪skywalking

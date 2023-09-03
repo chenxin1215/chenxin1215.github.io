@@ -1,7 +1,9 @@
 ---
 title: Spring事务设置手动回滚
 date: 2023-02-08 06:58:18
-tags: Java
+tags: 
+    - Java
+categories: 编程经验
 ---
 
 直接上代码：

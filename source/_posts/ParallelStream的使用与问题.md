@@ -1,7 +1,9 @@
 ---
 title: ParallelStream的使用与问题
 date: 2023-02-08 07:06:01
-tags: Java
+tags: 
+    - Java
+categories: 编程经验
 ---
 
 parallelStream是Java流式集合操作的一种，它会使用多线程执行循环，效率更高。

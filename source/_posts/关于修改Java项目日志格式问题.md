@@ -1,7 +1,9 @@
 ---
 title: 关于Java配置自定义日志格式问题
 date: 2023-02-03 12:52:36
-tags: Java
+tags: 
+    - Java
+categories: 编程经验
 ---
 
 ### 常见的日志框架及修改方式

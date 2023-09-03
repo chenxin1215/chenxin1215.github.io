@@ -1,7 +1,9 @@
 ---
 title: 关于BigDecimal处理浮点类型出现的问题
 date: 2023-02-08 07:10:27
-tags: Java
+tags: 
+    - Java
+categories: 编程经验
 ---
 
 问题：new BigDecimal(3.9) 出现精度问题 

@@ -1,7 +1,9 @@
 ---
 title: Git的储藏弹出与摘取的用法
 date: 2023-02-08 06:51:24
-tags: Git
+tags: 
+    - Git
+categories: 编程经验
 ---
 
 #### Git的储藏弹出与摘取什么时候可以用到？

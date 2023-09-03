@@ -1,7 +1,9 @@
 ---
 title: java操作服务器执行shell
 date: 2023-02-08 06:53:14
-tags: Java
+tags: 
+    - Java
+categories: 编程经验
 ---
 
 直接上代码
