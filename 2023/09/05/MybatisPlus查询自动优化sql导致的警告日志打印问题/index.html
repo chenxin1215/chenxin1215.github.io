@@ -16,22 +16,28 @@
   <meta name="author" content="Keep">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="Git的储藏弹出与摘取什么时候可以用到？例：问题：你本来是要在b分支上开发，但是你却在a分支上已经开发完了，这个时候，你需要将你在a分支上写的代码“剪切”到b分支上。 解决方法：①：当你未提交代码时：使用Git的储藏与弹出。 在你开发的a分支上，使用同步里的储藏功能，然后切换到你需要开发的b分支上，使用同步里的弹出功能，即可。②：当你已提交代码时：使用Git的摘取，切换到你需要开发的b分支上，使用">
+    <meta name="description" content="一、现象在使用QueryWrapper中的实体构造方法来构造QueryWrapper后，再调用MybatisPlus内置的分页查询接口；sql可以正常查询，但是会报出以下警告日志：MybatisPlus版本：3.5.2 二、原因找到日志位置：PaginationInnerInterceptor类中的autoCountSql方法 三、解决方案一：最简单的方法就是不使用Wrapper的构造方法构造">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git的储藏弹出与摘取的用法">
-<meta property="og:url" content="http://example.comde/2023/02/08/Git%E7%9A%84%E5%82%A8%E8%97%8F%E5%BC%B9%E5%87%BA%E4%B8%8E%E6%91%98%E5%8F%96%E7%9A%84%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:title" content="MybatisPlus查询自动优化sql导致的警告日志打印问题">
+<meta property="og:url" content="http://example.comde/2023/09/05/MybatisPlus%E6%9F%A5%E8%AF%A2%E8%87%AA%E5%8A%A8%E4%BC%98%E5%8C%96sql%E5%AF%BC%E8%87%B4%E7%9A%84%E8%AD%A6%E5%91%8A%E6%97%A5%E5%BF%97%E6%89%93%E5%8D%B0%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="keep blog">
-<meta property="og:description" content="Git的储藏弹出与摘取什么时候可以用到？例：问题：你本来是要在b分支上开发，但是你却在a分支上已经开发完了，这个时候，你需要将你在a分支上写的代码“剪切”到b分支上。 解决方法：①：当你未提交代码时：使用Git的储藏与弹出。 在你开发的a分支上，使用同步里的储藏功能，然后切换到你需要开发的b分支上，使用同步里的弹出功能，即可。②：当你已提交代码时：使用Git的摘取，切换到你需要开发的b分支上，使用">
+<meta property="og:description" content="一、现象在使用QueryWrapper中的实体构造方法来构造QueryWrapper后，再调用MybatisPlus内置的分页查询接口；sql可以正常查询，但是会报出以下警告日志：MybatisPlus版本：3.5.2 二、原因找到日志位置：PaginationInnerInterceptor类中的autoCountSql方法 三、解决方案一：最简单的方法就是不使用Wrapper的构造方法构造">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-02-07T22:51:24.000Z">
-<meta property="article:modified_time" content="2023-09-03T12:09:45.209Z">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693895781522-3a4d4c8f-d419-4806-a1eb-fb519b56673d.png#averageHue=%232d2d2c&clientId=ufff8bd6c-047b-4&from=paste&height=681&id=uc2e3444b&originHeight=681&originWidth=1883&originalType=binary&ratio=1&rotation=0&showTitle=false&size=152078&status=done&style=none&taskId=u4efda641-8c8f-414e-be01-52ceed24163&title=&width=1883">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693897233378-87c628c1-9164-411e-bf6b-474b0f4dbfca.png#averageHue=%232c2c2b&clientId=ufff8bd6c-047b-4&from=paste&height=801&id=ufa6ecd47&originHeight=801&originWidth=1597&originalType=binary&ratio=1&rotation=0&showTitle=false&size=129868&status=done&style=none&taskId=uc82480b3-1653-4e2f-8083-9fbf815d52b&title=&width=1597">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693898412222-c428576e-433a-4373-b9b9-b2eeb5e17f73.png#averageHue=%232f2e2c&clientId=ufff8bd6c-047b-4&from=paste&height=269&id=ueb017203&originHeight=269&originWidth=1017&originalType=binary&ratio=1&rotation=0&showTitle=false&size=56787&status=done&style=none&taskId=u52a2d6db-9950-450b-85aa-94dc3da1d58&title=&width=1017">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693898534016-36ef5cea-fa64-49c1-b6ac-06dea9e5377a.png#averageHue=%23302d2d&clientId=ufff8bd6c-047b-4&from=paste&height=761&id=ue35aa93d&originHeight=761&originWidth=1379&originalType=binary&ratio=1&rotation=0&showTitle=false&size=126030&status=done&style=none&taskId=u608f4453-d1ac-481f-a58b-b946bd5755e&title=&width=1379">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693898550289-c8ae56f2-314e-45af-b0f7-8dc6b5d65a8f.png#averageHue=%232f2e2d&clientId=ufff8bd6c-047b-4&from=paste&height=225&id=uba0b1ad4&originHeight=225&originWidth=902&originalType=binary&ratio=1&rotation=0&showTitle=false&size=42748&status=done&style=none&taskId=u71a30183-62d7-4c6a-a8d3-942dd461cf6&title=&width=902">
+<meta property="article:published_time" content="2023-09-05T14:35:49.000Z">
+<meta property="article:modified_time" content="2023-09-05T14:38:20.846Z">
 <meta property="article:author" content="Keep">
-<meta property="article:tag" content="Git">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693895781522-3a4d4c8f-d419-4806-a1eb-fb519b56673d.png#averageHue=%232d2d2c&clientId=ufff8bd6c-047b-4&from=paste&height=681&id=uc2e3444b&originHeight=681&originWidth=1883&originalType=binary&ratio=1&rotation=0&showTitle=false&size=152078&status=done&style=none&taskId=u4efda641-8c8f-414e-be01-52ceed24163&title=&width=1883">
   
   
   
-  <title>Git的储藏弹出与摘取的用法 - keep blog</title>
+  <title>MybatisPlus查询自动优化sql导致的警告日志打印问题 - keep blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Git的储藏弹出与摘取的用法"></span>
+            <span id="subtitle" data-typed-text="MybatisPlus查询自动优化sql导致的警告日志打印问题"></span>
           
         </div>
 
@@ -208,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-02-08 06:51" pubdate>
-          2023年2月8日 早上
+        <time datetime="2023-09-05 22:35" pubdate>
+          2023年9月5日 晚上
         </time>
       </span>
     
@@ -220,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          203 字
+          254 字
         
       </span>
     
@@ -231,7 +237,7 @@
         
         
         
-          2 分钟
+          3 分钟
         
       </span>
     
@@ -268,13 +274,17 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Git的储藏弹出与摘取的用法</h1>
+            <h1 id="seo-header">MybatisPlus查询自动优化sql导致的警告日志打印问题</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="Git的储藏弹出与摘取什么时候可以用到？"><a href="#Git的储藏弹出与摘取什么时候可以用到？" class="headerlink" title="Git的储藏弹出与摘取什么时候可以用到？"></a>Git的储藏弹出与摘取什么时候可以用到？</h4><p>例：<br>问题：你本来是要在b分支上开发，但是你却在a分支上已经开发完了，这个时候，你需要将你在a分支上写的代码“剪切”到b分支上。</p>
-<p>解决方法：<br>①：当你未提交代码时：<br>使用Git的储藏与弹出。 在你开发的a分支上，使用同步里的储藏功能，然后切换到你需要开发的b分支上，使用同步里的弹出功能，即可。<br>②：当你已提交代码时：<br>使用Git的摘取，切换到你需要开发的b分支上，使用摘取功能。</p>
+                <meta name="referrer" content="no-referrer"/>
+
+<h4 id="一、现象"><a href="#一、现象" class="headerlink" title="一、现象"></a>一、现象</h4><p>在使用QueryWrapper中的实体构造方法来构造QueryWrapper后，再调用MybatisPlus内置的分页查询接口；<br>sql可以正常查询，但是会报出以下警告日志：<br>MybatisPlus版本：3.5.2<br><img src="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693895781522-3a4d4c8f-d419-4806-a1eb-fb519b56673d.png#averageHue=%232d2d2c&clientId=ufff8bd6c-047b-4&from=paste&height=681&id=uc2e3444b&originHeight=681&originWidth=1883&originalType=binary&ratio=1&rotation=0&showTitle=false&size=152078&status=done&style=none&taskId=u4efda641-8c8f-414e-be01-52ceed24163&title=&width=1883" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="二、原因"><a href="#二、原因" class="headerlink" title="二、原因"></a>二、原因</h4><p>找到日志位置：<br>PaginationInnerInterceptor类中的autoCountSql方法<br><img src="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693897233378-87c628c1-9164-411e-bf6b-474b0f4dbfca.png#averageHue=%232c2c2b&clientId=ufff8bd6c-047b-4&from=paste&height=801&id=ufa6ecd47&originHeight=801&originWidth=1597&originalType=binary&ratio=1&rotation=0&showTitle=false&size=129868&status=done&style=none&taskId=uc82480b3-1653-4e2f-8083-9fbf815d52b&title=&width=1597" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="三、解决"><a href="#三、解决" class="headerlink" title="三、解决"></a>三、解决</h4><p>方案一：最简单的方法就是不使用Wrapper的构造方法构造查询条件，自己使用代码构造；如下：<br><img src="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693898412222-c428576e-433a-4373-b9b9-b2eeb5e17f73.png#averageHue=%232f2e2c&clientId=ufff8bd6c-047b-4&from=paste&height=269&id=ueb017203&originHeight=269&originWidth=1017&originalType=binary&ratio=1&rotation=0&showTitle=false&size=56787&status=done&style=none&taskId=u52a2d6db-9950-450b-85aa-94dc3da1d58&title=&width=1017" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>方案二：如果实在需要使用构造方法构造条件，可以配置不自动优化sql，跳过报错代码；<br><img src="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693898534016-36ef5cea-fa64-49c1-b6ac-06dea9e5377a.png#averageHue=%23302d2d&clientId=ufff8bd6c-047b-4&from=paste&height=761&id=ue35aa93d&originHeight=761&originWidth=1379&originalType=binary&ratio=1&rotation=0&showTitle=false&size=126030&status=done&style=none&taskId=u608f4453-d1ac-481f-a58b-b946bd5755e&title=&width=1379" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693898550289-c8ae56f2-314e-45af-b0f7-8dc6b5d65a8f.png#averageHue=%232f2e2d&clientId=ufff8bd6c-047b-4&from=paste&height=225&id=uba0b1ad4&originHeight=225&originWidth=902&originalType=binary&ratio=1&rotation=0&showTitle=false&size=42748&status=done&style=none&taskId=u71a30183-62d7-4c6a-a8d3-942dd461cf6&title=&width=902" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 
                 
               </div>
@@ -308,7 +318,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Git/" class="print-no-link">#Git</a>
+        <a href="/tags/Java/" class="print-no-link">#Java</a>
       
     </div>
   
@@ -320,8 +330,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Git的储藏弹出与摘取的用法</div>
-      <div>http://example.comde/2023/02/08/Git的储藏弹出与摘取的用法/</div>
+      <div>MybatisPlus查询自动优化sql导致的警告日志打印问题</div>
+      <div>http://example.comde/2023/09/05/MybatisPlus查询自动优化sql导致的警告日志打印问题/</div>
     </div>
     <div class="license-meta">
       
@@ -333,7 +343,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年2月8日</div>
+          <div>2023年9月5日</div>
         </div>
       
       
@@ -365,18 +375,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/08/java%E6%93%8D%E4%BD%9C%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8Cshell/" title="java操作服务器执行shell">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">java操作服务器执行shell</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/08/%E8%AF%AD%E9%9B%80%E7%9F%A5%E8%AF%86%E5%BA%93%E5%AF%BC%E5%87%BAmd%E6%A0%BC%E5%BC%8F%E5%88%B0%E6%9C%AC%E5%9C%B0/" title="语雀知识库导出md格式到本地">
-                        <span class="hidden-mobile">语雀知识库导出md格式到本地</span>
+                      <a href="/2023/09/03/%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2/" title="搭建Hexo博客">
+                        <span class="hidden-mobile">搭建Hexo博客</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
