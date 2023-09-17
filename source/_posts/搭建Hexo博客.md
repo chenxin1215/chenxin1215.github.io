@@ -2,6 +2,7 @@
 title: 搭建Hexo博客
 date: 2023-09-03 20:49:13
 tags:
+sticky: 100
 ---
 
 # hexo是什么
