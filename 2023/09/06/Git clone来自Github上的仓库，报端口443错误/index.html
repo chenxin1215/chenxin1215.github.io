@@ -16,28 +16,26 @@
   <meta name="author" content="Keep">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="一、现象在使用QueryWrapper中的实体构造方法来构造QueryWrapper后，再调用MybatisPlus内置的分页查询接口；sql可以正常查询，但是会报出以下警告日志：MybatisPlus版本：3.5.2 二、原因找到日志位置：PaginationInnerInterceptor类中的autoCountSql方法 三、解决方案一：最简单的方法就是不使用Wrapper的构造方法构造">
+    <meta name="description" content="一、问题描述：克隆github上的开源项目报错：Failed to connect to github.com port 443 : Timed out 如图所示：   二、原因：可能是git 所设端口与系统代理不一致，需重新设置。  三、解决方案：打开windows设置 -&gt; 网络 -&gt; 代理 记录下当前系统代理的IP地址和端口号。如上图所示，地址与端口号为：127.0.0.1:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MybatisPlus查询自动优化sql导致的警告日志打印问题">
-<meta property="og:url" content="http://example.comde/2023/09/05/MybatisPlus%E6%9F%A5%E8%AF%A2%E8%87%AA%E5%8A%A8%E4%BC%98%E5%8C%96sql%E5%AF%BC%E8%87%B4%E7%9A%84%E8%AD%A6%E5%91%8A%E6%97%A5%E5%BF%97%E6%89%93%E5%8D%B0%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="Git clone来自Github上的仓库，报端口443错误">
+<meta property="og:url" content="http://example.comde/2023/09/06/Git%20clone%E6%9D%A5%E8%87%AAGithub%E4%B8%8A%E7%9A%84%E4%BB%93%E5%BA%93%EF%BC%8C%E6%8A%A5%E7%AB%AF%E5%8F%A3443%E9%94%99%E8%AF%AF/index.html">
 <meta property="og:site_name" content="keep blog">
-<meta property="og:description" content="一、现象在使用QueryWrapper中的实体构造方法来构造QueryWrapper后，再调用MybatisPlus内置的分页查询接口；sql可以正常查询，但是会报出以下警告日志：MybatisPlus版本：3.5.2 二、原因找到日志位置：PaginationInnerInterceptor类中的autoCountSql方法 三、解决方案一：最简单的方法就是不使用Wrapper的构造方法构造">
+<meta property="og:description" content="一、问题描述：克隆github上的开源项目报错：Failed to connect to github.com port 443 : Timed out 如图所示：   二、原因：可能是git 所设端口与系统代理不一致，需重新设置。  三、解决方案：打开windows设置 -&gt; 网络 -&gt; 代理 记录下当前系统代理的IP地址和端口号。如上图所示，地址与端口号为：127.0.0.1:">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693895781522-3a4d4c8f-d419-4806-a1eb-fb519b56673d.png#averageHue=%232d2d2c&clientId=ufff8bd6c-047b-4&from=paste&height=681&id=uc2e3444b&originHeight=681&originWidth=1883&originalType=binary&ratio=1&rotation=0&showTitle=false&size=152078&status=done&style=none&taskId=u4efda641-8c8f-414e-be01-52ceed24163&title=&width=1883">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693897233378-87c628c1-9164-411e-bf6b-474b0f4dbfca.png#averageHue=%232c2c2b&clientId=ufff8bd6c-047b-4&from=paste&height=801&id=ufa6ecd47&originHeight=801&originWidth=1597&originalType=binary&ratio=1&rotation=0&showTitle=false&size=129868&status=done&style=none&taskId=uc82480b3-1653-4e2f-8083-9fbf815d52b&title=&width=1597">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693898412222-c428576e-433a-4373-b9b9-b2eeb5e17f73.png#averageHue=%232f2e2c&clientId=ufff8bd6c-047b-4&from=paste&height=269&id=ueb017203&originHeight=269&originWidth=1017&originalType=binary&ratio=1&rotation=0&showTitle=false&size=56787&status=done&style=none&taskId=u52a2d6db-9950-450b-85aa-94dc3da1d58&title=&width=1017">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693898534016-36ef5cea-fa64-49c1-b6ac-06dea9e5377a.png#averageHue=%23302d2d&clientId=ufff8bd6c-047b-4&from=paste&height=761&id=ue35aa93d&originHeight=761&originWidth=1379&originalType=binary&ratio=1&rotation=0&showTitle=false&size=126030&status=done&style=none&taskId=u608f4453-d1ac-481f-a58b-b946bd5755e&title=&width=1379">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693898550289-c8ae56f2-314e-45af-b0f7-8dc6b5d65a8f.png#averageHue=%232f2e2d&clientId=ufff8bd6c-047b-4&from=paste&height=225&id=uba0b1ad4&originHeight=225&originWidth=902&originalType=binary&ratio=1&rotation=0&showTitle=false&size=42748&status=done&style=none&taskId=u71a30183-62d7-4c6a-a8d3-942dd461cf6&title=&width=902">
-<meta property="article:published_time" content="2023-09-05T14:35:49.000Z">
-<meta property="article:modified_time" content="2023-09-05T14:38:20.846Z">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693980752087-6c873ec7-54ab-449a-8664-fe70cf0cef8c.png#averageHue=%23312e2d&clientId=ue76d7c67-d5e7-4&from=paste&height=128&id=u520ece08&originHeight=128&originWidth=1129&originalType=binary&ratio=1&rotation=0&showTitle=false&size=33970&status=done&style=none&taskId=u72a6f70d-d096-4c76-9189-c3acb81b3d2&title=&width=1129">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693980915514-6e9c670b-fa61-40e1-ae17-8200c2e3d594.png#averageHue=%232c1f2d&clientId=ue76d7c67-d5e7-4&from=paste&height=499&id=u32f3088a&originHeight=709&originWidth=848&originalType=binary&ratio=1&rotation=0&showTitle=false&size=77552&status=done&style=stroke&taskId=u39180eb5-3383-41eb-a639-8cbb44bc6fd&title=&width=597">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693980927551-209d9dd2-b4ba-4740-8f10-2395960c9d6b.png#averageHue=%23292428&clientId=ue76d7c67-d5e7-4&from=paste&height=518&id=ufc16de84&originHeight=660&originWidth=783&originalType=binary&ratio=1&rotation=0&showTitle=false&size=66751&status=done&style=stroke&taskId=uc10f872e-1dbb-46d2-8e8b-65c3b988e39&title=&width=614">
+<meta property="article:published_time" content="2023-09-06T07:17:16.000Z">
+<meta property="article:modified_time" content="2023-09-23T04:13:34.530Z">
 <meta property="article:author" content="Keep">
-<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693895781522-3a4d4c8f-d419-4806-a1eb-fb519b56673d.png#averageHue=%232d2d2c&clientId=ufff8bd6c-047b-4&from=paste&height=681&id=uc2e3444b&originHeight=681&originWidth=1883&originalType=binary&ratio=1&rotation=0&showTitle=false&size=152078&status=done&style=none&taskId=u4efda641-8c8f-414e-be01-52ceed24163&title=&width=1883">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693980752087-6c873ec7-54ab-449a-8664-fe70cf0cef8c.png#averageHue=%23312e2d&clientId=ue76d7c67-d5e7-4&from=paste&height=128&id=u520ece08&originHeight=128&originWidth=1129&originalType=binary&ratio=1&rotation=0&showTitle=false&size=33970&status=done&style=none&taskId=u72a6f70d-d096-4c76-9189-c3acb81b3d2&title=&width=1129">
   
   
   
-  <title>MybatisPlus查询自动优化sql导致的警告日志打印问题 - keep blog</title>
+  <title>Git clone来自Github上的仓库，报端口443错误 - keep blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="MybatisPlus查询自动优化sql导致的警告日志打印问题"></span>
+            <span id="subtitle" data-typed-text="Git clone来自Github上的仓库，报端口443错误"></span>
           
         </div>
 
@@ -214,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-05 22:35" pubdate>
-          2023年9月5日 晚上
+        <time datetime="2023-09-06 15:17" pubdate>
+          2023年9月6日 下午
         </time>
       </span>
     
@@ -226,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          254 字
+          314 字
         
       </span>
     
@@ -274,17 +272,24 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">MybatisPlus查询自动优化sql导致的警告日志打印问题</h1>
+            <h1 id="seo-header">Git clone来自Github上的仓库，报端口443错误</h1>
             
             
               <div class="markdown-body">
                 
                 <meta name="referrer" content="no-referrer"/>
 
-<h4 id="一、现象"><a href="#一、现象" class="headerlink" title="一、现象"></a>一、现象</h4><p>在使用QueryWrapper中的实体构造方法来构造QueryWrapper后，再调用MybatisPlus内置的分页查询接口；<br>sql可以正常查询，但是会报出以下警告日志：<br>MybatisPlus版本：3.5.2<br><img src="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693895781522-3a4d4c8f-d419-4806-a1eb-fb519b56673d.png#averageHue=%232d2d2c&clientId=ufff8bd6c-047b-4&from=paste&height=681&id=uc2e3444b&originHeight=681&originWidth=1883&originalType=binary&ratio=1&rotation=0&showTitle=false&size=152078&status=done&style=none&taskId=u4efda641-8c8f-414e-be01-52ceed24163&title=&width=1883" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="二、原因"><a href="#二、原因" class="headerlink" title="二、原因"></a>二、原因</h4><p>找到日志位置：<br>PaginationInnerInterceptor类中的autoCountSql方法<br><img src="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693897233378-87c628c1-9164-411e-bf6b-474b0f4dbfca.png#averageHue=%232c2c2b&clientId=ufff8bd6c-047b-4&from=paste&height=801&id=ufa6ecd47&originHeight=801&originWidth=1597&originalType=binary&ratio=1&rotation=0&showTitle=false&size=129868&status=done&style=none&taskId=uc82480b3-1653-4e2f-8083-9fbf815d52b&title=&width=1597" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h4 id="三、解决"><a href="#三、解决" class="headerlink" title="三、解决"></a>三、解决</h4><p>方案一：最简单的方法就是不使用Wrapper的构造方法构造查询条件，自己使用代码构造；如下：<br><img src="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693898412222-c428576e-433a-4373-b9b9-b2eeb5e17f73.png#averageHue=%232f2e2c&clientId=ufff8bd6c-047b-4&from=paste&height=269&id=ueb017203&originHeight=269&originWidth=1017&originalType=binary&ratio=1&rotation=0&showTitle=false&size=56787&status=done&style=none&taskId=u52a2d6db-9950-450b-85aa-94dc3da1d58&title=&width=1017" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>方案二：如果实在需要使用构造方法构造条件，可以配置不自动优化sql，跳过报错代码；<br><img src="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693898534016-36ef5cea-fa64-49c1-b6ac-06dea9e5377a.png#averageHue=%23302d2d&clientId=ufff8bd6c-047b-4&from=paste&height=761&id=ue35aa93d&originHeight=761&originWidth=1379&originalType=binary&ratio=1&rotation=0&showTitle=false&size=126030&status=done&style=none&taskId=u608f4453-d1ac-481f-a58b-b946bd5755e&title=&width=1379" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693898550289-c8ae56f2-314e-45af-b0f7-8dc6b5d65a8f.png#averageHue=%232f2e2d&clientId=ufff8bd6c-047b-4&from=paste&height=225&id=uba0b1ad4&originHeight=225&originWidth=902&originalType=binary&ratio=1&rotation=0&showTitle=false&size=42748&status=done&style=none&taskId=u71a30183-62d7-4c6a-a8d3-942dd461cf6&title=&width=902" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="一、问题描述："><a href="#一、问题描述：" class="headerlink" title="一、问题描述："></a>一、问题描述：</h3><pre><code class="hljs">克隆github上的开源项目报错：Failed to connect to github.com port 443 : Timed out
+如图所示：
+</code></pre>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693980752087-6c873ec7-54ab-449a-8664-fe70cf0cef8c.png#averageHue=%23312e2d&clientId=ue76d7c67-d5e7-4&from=paste&height=128&id=u520ece08&originHeight=128&originWidth=1129&originalType=binary&ratio=1&rotation=0&showTitle=false&size=33970&status=done&style=none&taskId=u72a6f70d-d096-4c76-9189-c3acb81b3d2&title=&width=1129" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="二、原因："><a href="#二、原因：" class="headerlink" title="二、原因："></a>二、原因：</h3><pre><code class="hljs">可能是git 所设端口与系统代理不一致，需重新设置。
+</code></pre>
+<h3 id="三、解决方案："><a href="#三、解决方案：" class="headerlink" title="三、解决方案："></a>三、解决方案：</h3><h5 id="打开windows设置-gt-网络-gt-代理"><a href="#打开windows设置-gt-网络-gt-代理" class="headerlink" title="打开windows设置 -&gt; 网络 -&gt; 代理"></a>打开windows设置 -&gt; 网络 -&gt; 代理</h5><p><img src="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693980915514-6e9c670b-fa61-40e1-ae17-8200c2e3d594.png#averageHue=%232c1f2d&clientId=ue76d7c67-d5e7-4&from=paste&height=499&id=u32f3088a&originHeight=709&originWidth=848&originalType=binary&ratio=1&rotation=0&showTitle=false&size=77552&status=done&style=stroke&taskId=u39180eb5-3383-41eb-a639-8cbb44bc6fd&title=&width=597" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2023/png/29411486/1693980927551-209d9dd2-b4ba-4740-8f10-2395960c9d6b.png#averageHue=%23292428&clientId=ue76d7c67-d5e7-4&from=paste&height=518&id=ufc16de84&originHeight=660&originWidth=783&originalType=binary&ratio=1&rotation=0&showTitle=false&size=66751&status=done&style=stroke&taskId=uc10f872e-1dbb-46d2-8e8b-65c3b988e39&title=&width=614" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h5 id="记录下当前系统代理的IP地址和端口号。"><a href="#记录下当前系统代理的IP地址和端口号。" class="headerlink" title="记录下当前系统代理的IP地址和端口号。"></a>记录下当前系统代理的IP地址和端口号。</h5><pre><code class="hljs">如上图所示，地址与端口号为：127.0.0.1:7890
+</code></pre>
+<h5 id="修改git的网络设置"><a href="#修改git的网络设置" class="headerlink" title="修改git的网络设置"></a>修改git的网络设置</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plsql"># 注意修改成自己的代理地址<br>git config --global http.proxy http://127.0.0.1:7890 <br>git config --global https.proxy http://127.0.0.1:7890<br></code></pre></td></tr></table></figure>
+<p>重新clone 成功！</p>
 
                 
               </div>
@@ -318,7 +323,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Java/" class="print-no-link">#Java</a>
+        <a href="/tags/Git/" class="print-no-link">#Git</a>
       
     </div>
   
@@ -330,8 +335,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>MybatisPlus查询自动优化sql导致的警告日志打印问题</div>
-      <div>http://example.comde/2023/09/05/MybatisPlus查询自动优化sql导致的警告日志打印问题/</div>
+      <div>Git clone来自Github上的仓库，报端口443错误</div>
+      <div>http://example.comde/2023/09/06/Git clone来自Github上的仓库，报端口443错误/</div>
     </div>
     <div class="license-meta">
       
@@ -343,7 +348,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年9月5日</div>
+          <div>2023年9月6日</div>
         </div>
       
       
@@ -375,9 +380,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/06/Git%20clone%E6%9D%A5%E8%87%AAGithub%E4%B8%8A%E7%9A%84%E4%BB%93%E5%BA%93%EF%BC%8C%E6%8A%A5%E7%AB%AF%E5%8F%A3443%E9%94%99%E8%AF%AF/" title="Git clone来自Github上的仓库，报端口443错误">
+                      <a href="/2023/09/23/%E8%BD%AF%E8%80%83%E9%AB%98%E7%BA%A7-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88%20%E8%AE%BA%E6%96%87%E6%A8%A1%E6%9D%BF/" title="软考高级-系统架构师 论文模板">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Git clone来自Github上的仓库，报端口443错误</span>
+                        <span class="hidden-mobile">软考高级-系统架构师 论文模板</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -385,8 +390,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/03/%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2/" title="搭建Hexo博客">
-                        <span class="hidden-mobile">搭建Hexo博客</span>
+                      <a href="/2023/09/05/MybatisPlus%E6%9F%A5%E8%AF%A2%E8%87%AA%E5%8A%A8%E4%BC%98%E5%8C%96sql%E5%AF%BC%E8%87%B4%E7%9A%84%E8%AD%A6%E5%91%8A%E6%97%A5%E5%BF%97%E6%89%93%E5%8D%B0%E9%97%AE%E9%A2%98/" title="MybatisPlus查询自动优化sql导致的警告日志打印问题">
+                        <span class="hidden-mobile">MybatisPlus查询自动优化sql导致的警告日志打印问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
