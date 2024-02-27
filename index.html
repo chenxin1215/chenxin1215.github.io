@@ -351,6 +351,130 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/01/29/Gradle%E6%8E%92%E9%99%A4%E4%BE%9D%E8%B5%96%E5%AF%BC%E8%87%B4%E4%BE%9D%E8%B5%96%E4%B8%8D%E5%8F%AF%E7%94%A8%E9%97%AE%E9%A2%98/" target="_self">
+          Gradle排除依赖导致依赖不可用问题
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/29/Gradle%E6%8E%92%E9%99%A4%E4%BE%9D%E8%B5%96%E5%AF%BC%E8%87%B4%E4%BE%9D%E8%B5%96%E4%B8%8D%E5%8F%AF%E7%94%A8%E9%97%AE%E9%A2%98/" target="_self">
+        <div>
+          一、背景在新项目中, 引入之前旧项目的公用依赖包之后，发现这个依赖包携带了大量的其他公用依赖树。如：通用返回结构类、通用异常类等等；但是在新项目中，这些都是需要重新定义的。 二、问题由于定义的类名相同，导致引入依赖包时，经常有开发同学引入错误，导致了一些bug。于是在gradle依赖中，使用**exclude**关键字排除这些依赖树。如：但是排除之后发现项目无法启动！显然，我们将field-e
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-01-29 19:32" pubdate>
+              2024-01-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E7%BB%8F%E9%AA%8C/" class="category-chain-item">编程经验</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">#Java</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/01/27/MySQL%E4%B8%AD%E6%9F%A5%E8%AF%A2json%E7%B1%BB%E5%9E%8B%E5%AD%97%E6%AE%B5%E4%B8%AD%E7%9A%84%E4%B8%AD%E6%96%87%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/" target="_self">
+          MySQL中查询json类型字段中的中文报错问题
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/27/MySQL%E4%B8%AD%E6%9F%A5%E8%AF%A2json%E7%B1%BB%E5%9E%8B%E5%AD%97%E6%AE%B5%E4%B8%AD%E7%9A%84%E4%B8%AD%E6%96%87%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/" target="_self">
+        <div>
+          数据示例： 现象使用 -&gt;&gt; 进行查询，会提示异常： 但是查询英文类型的字段就不会： 原因在MySQL中，使用 -&gt; 或 -&gt;&gt; 操作符来访问JSON列中的数据时，需要遵守JSON路径表达式的语法。JSON路径表达式通常使用英文字符来表示路径的各个部分。当你使用中文作为JSON键名时，你需要确保路径表达式是合法的。在例子中，param -&gt;&gt; ‘$.初
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-01-27 00:55" pubdate>
+              2024-01-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/MySQL/">#MySQL</a>
+            
+              <a href="/tags/%E5%B7%A5%E5%85%B7%E6%96%B9%E6%B3%95/">#工具方法</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2023/09/23/%E8%BD%AF%E8%80%83%E9%AB%98%E7%BA%A7-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88%20%E8%AE%BA%E6%96%87%E6%A8%A1%E6%9D%BF/" target="_self">
           软考高级-系统架构师 论文模板
         </a>
@@ -713,133 +837,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/02/08/%E5%85%B3%E4%BA%8EBigDecimal%E5%A4%84%E7%90%86%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/" target="_self">
-          关于BigDecimal处理浮点类型出现的问题
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/02/08/%E5%85%B3%E4%BA%8EBigDecimal%E5%A4%84%E7%90%86%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/" target="_self">
-        <div>
-          问题：new BigDecimal(3.9) 出现精度问题  1234BigDecimal tempModelData = new BigDecimal(1).multiply(new BigDecimal(3.9));System.out.println(&quot;tempModelData = &quot; + tempModelData);// 输出：tempModelData = 3.8
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-02-08 07:10" pubdate>
-              2023-02-08
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%BC%96%E7%A8%8B%E7%BB%8F%E9%AA%8C/" class="category-chain-item">编程经验</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Java/">#Java</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/02/08/List%E5%A4%8D%E6%9D%82%E5%AF%B9%E8%B1%A1%E6%9D%A1%E4%BB%B6%E6%8E%92%E5%BA%8F/" target="_self">
-          List复杂对象条件排序
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/02/08/List%E5%A4%8D%E6%9D%82%E5%AF%B9%E8%B1%A1%E6%9D%A1%E4%BB%B6%E6%8E%92%E5%BA%8F/" target="_self">
-        <div>
-          上代码： 12345678910111213// 根据创建时间排序Collections.sort(receivableDataList, new Comparator&lt;SaveAccruedItemData&gt;() &#123;    @Override    public int compare(SaveAccruedItemData o1, SaveAccruedItemData
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-02-08 07:09" pubdate>
-              2023-02-08
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%BC%96%E7%A8%8B%E7%BB%8F%E9%AA%8C/" class="category-chain-item">编程经验</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Java/">#Java</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

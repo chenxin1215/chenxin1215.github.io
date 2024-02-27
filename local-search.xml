@@ -29,6 +29,58 @@
   
   
   <entry>
+    <title>Gradle排除依赖导致依赖不可用问题</title>
+    <link href="/2024/01/29/Gradle%E6%8E%92%E9%99%A4%E4%BE%9D%E8%B5%96%E5%AF%BC%E8%87%B4%E4%BE%9D%E8%B5%96%E4%B8%8D%E5%8F%AF%E7%94%A8%E9%97%AE%E9%A2%98/"/>
+    <url>/2024/01/29/Gradle%E6%8E%92%E9%99%A4%E4%BE%9D%E8%B5%96%E5%AF%BC%E8%87%B4%E4%BE%9D%E8%B5%96%E4%B8%8D%E5%8F%AF%E7%94%A8%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer"/><h3 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h3><p>在新项目中, 引入之前旧项目的公用依赖包之后，发现这个依赖包携带了大量的其他公用依赖树。如：通用返回结构类、通用异常类等等；但是在新项目中，这些都是需要重新定义的。</p><h3 id="二、问题"><a href="#二、问题" class="headerlink" title="二、问题"></a>二、问题</h3><p>由于定义的类名相同，导致引入依赖包时，经常有开发同学引入错误，导致了一些bug。<br>于是在gradle依赖中，使用<code>**exclude**</code>关键字排除这些依赖树。如：<br><img src="https://cdn.nlark.com/yuque/0/2024/png/29411486/1706524011879-175ec62e-7cd5-42b2-9a62-d32a0aef6e88.png#averageHue=%232d2d2c&clientId=ud281526c-a252-4&from=paste&height=105&id=u0350b5a0&originHeight=116&originWidth=674&originalType=binary&ratio=1.100000023841858&rotation=0&showTitle=false&size=11970&status=done&style=none&taskId=u75a20701-cc18-44fe-a185-66f70478962&title=&width=612.727259446767" alt="image.png"><br>但是排除之后发现项目无法启动！<br><img src="https://cdn.nlark.com/yuque/0/2024/png/29411486/1706524342452-5cddd4f2-4515-4bf4-8ef9-4b925005888c.png#averageHue=%2334322f&clientId=ud281526c-a252-4&from=paste&height=284&id=u95d583fc&originHeight=312&originWidth=1260&originalType=binary&ratio=1.100000023841858&rotation=0&showTitle=false&size=109747&status=done&style=none&taskId=u691667fc-135a-48fe-aa72-d8fbe4c7113&title=&width=1145.4545206274875" alt="image.png"><br>显然，我们将<strong>field-encrypt</strong>中的<strong>cn.sharing.service:sharing-exception</strong>也排除掉了</p><p>原因：使用exclue语句排除一个依赖时，它会影响整个传递依赖关系树。<br>这可能会导致以下问题：</p><ol><li><strong>版本冲突：</strong> 如果<strong>cn.sharing.cloud:field-encrypt:1.2.4</strong>确实需要<strong>cn.sharing.service:sharing-exception</strong>，但与排除的版本冲突，可能会导致运行时错误或不一致性。</li><li><strong>功能缺失：</strong> 如果<strong>cn.sharing.cloud:field-encrypt:1.2.4</strong>的某些功能依赖于<strong>cn.sharing.service:sharing-exception:1.0.6</strong>，排除它可能导致缺失这些功能。</li></ol><h3 id="三、解决"><a href="#三、解决" class="headerlink" title="三、解决"></a>三、解决</h3><p>使用<strong>configurations</strong>块来针对特定配置进行排除。<br>代码：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">configurations &#123;<br>    excludeSharingException &#123;<br>        exclude group: <span class="hljs-string">&#x27;cn.sharing.service&#x27;</span>, module: <span class="hljs-string">&#x27;sharing-exception&#x27;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程经验</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>MySQL中查询json类型字段中的中文报错问题</title>
+    <link href="/2024/01/27/MySQL%E4%B8%AD%E6%9F%A5%E8%AF%A2json%E7%B1%BB%E5%9E%8B%E5%AD%97%E6%AE%B5%E4%B8%AD%E7%9A%84%E4%B8%AD%E6%96%87%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/"/>
+    <url>/2024/01/27/MySQL%E4%B8%AD%E6%9F%A5%E8%AF%A2json%E7%B1%BB%E5%9E%8B%E5%AD%97%E6%AE%B5%E4%B8%AD%E7%9A%84%E4%B8%AD%E6%96%87%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer"/><h3 id="数据示例："><a href="#数据示例：" class="headerlink" title="数据示例："></a>数据示例：</h3><p><img src="https://cdn.nlark.com/yuque/0/2024/png/29411486/1705917404024-52c5f7c4-770b-4570-91e5-8d32ede0f627.png#averageHue=%23302f2f&clientId=u579e16a9-38bf-4&from=paste&height=174&id=uc780fb0c&originHeight=191&originWidth=624&originalType=binary&ratio=1.100000023841858&rotation=0&showTitle=false&size=28346&status=done&style=none&taskId=u6f0b04a0-de45-4631-aec3-29f7da67627&title=&width=567.2727149774223" alt="image.png"></p><h3 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h3><p>使用 -&gt;&gt; 进行查询，会提示异常：<br><img src="https://cdn.nlark.com/yuque/0/2024/png/29411486/1705917455452-262300df-5972-4893-a75a-6d3e462e4f19.png#averageHue=%238e7a54&clientId=u579e16a9-38bf-4&from=paste&height=341&id=uca84dda8&originHeight=375&originWidth=947&originalType=binary&ratio=1.100000023841858&rotation=0&showTitle=false&size=29857&status=done&style=none&taskId=u2c544d68-6bd5-4f05-8f36-509df4f44b4&title=&width=860.9090722493893" alt="image.png"></p><p>但是查询英文类型的字段就不会：<br><img src="https://cdn.nlark.com/yuque/0/2024/png/29411486/1705917479403-f25767b4-6120-417a-b5cc-6279a931f6c2.png#averageHue=%23777c54&clientId=u579e16a9-38bf-4&from=paste&height=452&id=ua01dbd23&originHeight=497&originWidth=1046&originalType=binary&ratio=1.100000023841858&rotation=0&showTitle=false&size=58390&status=done&style=none&taskId=u77738be9-f09d-404c-bd34-a4adc3ab97b&title=&width=950.9090702986919" alt="image.png"></p><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>在MySQL中，使用 -&gt; 或 -&gt;&gt; 操作符来访问JSON列中的数据时，需要遵守JSON路径表达式的语法。<br>JSON路径表达式通常使用英文字符来表示路径的各个部分。<br>当你使用中文作为JSON键名时，你需要确保路径表达式是合法的。<br>在例子中，param -&gt;&gt; ‘$.初筛’ 可能会出现问题，因为JSON路径表达式可能不支持直接使用中文字符。</p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>为了解决这个问题，可以尝试以下方法：<br>确保你的数据库和连接字符集支持中文。通常，你需要使用 utf8mb4 字符集来支持包括emoji在内的所有Unicode字符。<br>将中文键名用双引号包围。在JSON路径表达式中，如果键名包含特殊字符或空格，通常需要用双引号包围。<br>例如：<strong>param -&gt;&gt; ‘$.”初筛”‘</strong><br><img src="https://cdn.nlark.com/yuque/0/2024/png/29411486/1705917604100-69a71ada-5212-4de3-a569-01053384df35.png#averageHue=%2371865b&clientId=u579e16a9-38bf-4&from=paste&height=428&id=uc93354a3&originHeight=471&originWidth=952&originalType=binary&ratio=1.100000023841858&rotation=0&showTitle=false&size=50470&status=done&style=none&taskId=u280524a6-883d-44cb-8480-eee393b0d7f&title=&width=865.4545266963238" alt="image.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据库</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MySQL</tag>
+      
+      <tag>工具方法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>软考高级-系统架构师 论文模板</title>
     <link href="/2023/09/23/%E8%BD%AF%E8%80%83%E9%AB%98%E7%BA%A7-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88%20%E8%AE%BA%E6%96%87%E6%A8%A1%E6%9D%BF/"/>
     <url>/2023/09/23/%E8%BD%AF%E8%80%83%E9%AB%98%E7%BA%A7-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88%20%E8%AE%BA%E6%96%87%E6%A8%A1%E6%9D%BF/</url>

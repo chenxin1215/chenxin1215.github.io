@@ -16,24 +16,25 @@
   <meta name="author" content="Keep">
   <meta name="keywords" content="博客">
   
-    <meta name="description" content="一、思路使用分治的思想进行排序，对于一个长度为n的序列，将其拆分为两个长度为 n&#x2F;2的子序列。然后每次递归调用函数使子序列有序，再线性的合并两个有序的子序列，使整个序列有序。重点有两个：    1. 拆分为两个子序列，并进行递归调用，对子序列排序。    2. 线性合并两个有序的子序列，使整体有序。 二、具体算法假设我们定义mergeSort(nums, l, r)函数表示对nums数组里的[">
+    <meta name="description" content="一、背景在新项目中, 引入之前旧项目的公用依赖包之后，发现这个依赖包携带了大量的其他公用依赖树。如：通用返回结构类、通用异常类等等；但是在新项目中，这些都是需要重新定义的。 二、问题由于定义的类名相同，导致引入依赖包时，经常有开发同学引入错误，导致了一些bug。于是在gradle依赖中，使用**exclude**关键字排除这些依赖树。如：但是排除之后发现项目无法启动！显然，我们将field-e">
 <meta property="og:type" content="article">
-<meta property="og:title" content="什么是归并排序？">
-<meta property="og:url" content="http://example.comde/2024/02/27/%E4%BB%80%E4%B9%88%E6%98%AF%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%EF%BC%9F/index.html">
+<meta property="og:title" content="Gradle排除依赖导致依赖不可用问题">
+<meta property="og:url" content="http://example.comde/2024/01/29/Gradle%E6%8E%92%E9%99%A4%E4%BE%9D%E8%B5%96%E5%AF%BC%E8%87%B4%E4%BE%9D%E8%B5%96%E4%B8%8D%E5%8F%AF%E7%94%A8%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="keep blog">
-<meta property="og:description" content="一、思路使用分治的思想进行排序，对于一个长度为n的序列，将其拆分为两个长度为 n&#x2F;2的子序列。然后每次递归调用函数使子序列有序，再线性的合并两个有序的子序列，使整个序列有序。重点有两个：    1. 拆分为两个子序列，并进行递归调用，对子序列排序。    2. 线性合并两个有序的子序列，使整体有序。 二、具体算法假设我们定义mergeSort(nums, l, r)函数表示对nums数组里的[">
+<meta property="og:description" content="一、背景在新项目中, 引入之前旧项目的公用依赖包之后，发现这个依赖包携带了大量的其他公用依赖树。如：通用返回结构类、通用异常类等等；但是在新项目中，这些都是需要重新定义的。 二、问题由于定义的类名相同，导致引入依赖包时，经常有开发同学引入错误，导致了一些bug。于是在gradle依赖中，使用**exclude**关键字排除这些依赖树。如：但是排除之后发现项目无法启动！显然，我们将field-e">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2024/gif/29411486/1708679447471-48886431-fbbf-418c-8b06-10589886216b.gif#averageHue=%23fdfcfc&clientId=uf5ec3c44-d104-4&from=drop&id=u236af1f9&originHeight=448&originWidth=805&originalType=binary&ratio=1.100000023841858&rotation=0&showTitle=false&size=1220304&status=done&style=stroke&taskId=u6215349f-2155-4f83-81dd-adda4c5ff56&title=">
-<meta property="article:published_time" content="2024-02-27T13:17:34.000Z">
-<meta property="article:modified_time" content="2024-02-27T13:25:55.052Z">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2024/png/29411486/1706524011879-175ec62e-7cd5-42b2-9a62-d32a0aef6e88.png#averageHue=%232d2d2c&clientId=ud281526c-a252-4&from=paste&height=105&id=u0350b5a0&originHeight=116&originWidth=674&originalType=binary&ratio=1.100000023841858&rotation=0&showTitle=false&size=11970&status=done&style=none&taskId=u75a20701-cc18-44fe-a185-66f70478962&title=&width=612.727259446767">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2024/png/29411486/1706524342452-5cddd4f2-4515-4bf4-8ef9-4b925005888c.png#averageHue=%2334322f&clientId=ud281526c-a252-4&from=paste&height=284&id=u95d583fc&originHeight=312&originWidth=1260&originalType=binary&ratio=1.100000023841858&rotation=0&showTitle=false&size=109747&status=done&style=none&taskId=u691667fc-135a-48fe-aa72-d8fbe4c7113&title=&width=1145.4545206274875">
+<meta property="article:published_time" content="2024-01-29T11:32:28.000Z">
+<meta property="article:modified_time" content="2024-02-27T13:32:18.441Z">
 <meta property="article:author" content="Keep">
-<meta property="article:tag" content="排序算法">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2024/gif/29411486/1708679447471-48886431-fbbf-418c-8b06-10589886216b.gif#averageHue=%23fdfcfc&clientId=uf5ec3c44-d104-4&from=drop&id=u236af1f9&originHeight=448&originWidth=805&originalType=binary&ratio=1.100000023841858&rotation=0&showTitle=false&size=1220304&status=done&style=stroke&taskId=u6215349f-2155-4f83-81dd-adda4c5ff56&title=">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2024/png/29411486/1706524011879-175ec62e-7cd5-42b2-9a62-d32a0aef6e88.png#averageHue=%232d2d2c&clientId=ud281526c-a252-4&from=paste&height=105&id=u0350b5a0&originHeight=116&originWidth=674&originalType=binary&ratio=1.100000023841858&rotation=0&showTitle=false&size=11970&status=done&style=none&taskId=u75a20701-cc18-44fe-a185-66f70478962&title=&width=612.727259446767">
   
   
   
-  <title>什么是归并排序？ - keep blog</title>
+  <title>Gradle排除依赖导致依赖不可用问题 - keep blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="什么是归并排序？"></span>
+            <span id="subtitle" data-typed-text="Gradle排除依赖导致依赖不可用问题"></span>
           
         </div>
 
@@ -210,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-27 21:17" pubdate>
-          2024年2月27日 晚上
+        <time datetime="2024-01-29 19:32" pubdate>
+          2024年1月29日 晚上
         </time>
       </span>
     
@@ -222,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          691 字
         
       </span>
     
@@ -233,7 +234,7 @@
         
         
         
-          15 分钟
+          6 分钟
         
       </span>
     
@@ -270,31 +271,23 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">什么是归并排序？</h1>
+            <h1 id="seo-header">Gradle排除依赖导致依赖不可用问题</h1>
             
             
               <div class="markdown-body">
                 
                 <meta name="referrer" content="no-referrer"/>
 
-<h4 id="一、思路"><a href="#一、思路" class="headerlink" title="一、思路"></a>一、思路</h4><p>使用分治的思想进行排序，对于一个长度为n的序列，将其拆分为两个长度为 <code>n/2</code>的子序列。<br>然后每次递归调用函数使子序列有序，再线性的合并两个有序的子序列，使整个序列有序。<br>重点有两个：<br>    1. 拆分为两个子序列，并进行递归调用，对子序列排序。<br>    2. 线性合并两个有序的子序列，使整体有序。</p>
-<h4 id="二、具体算法"><a href="#二、具体算法" class="headerlink" title="二、具体算法"></a>二、具体算法</h4><p>假设我们定义<code>mergeSort(nums, l, r)</code>函数表示对<code>nums</code>数组里的<code>[l, r]</code>部分进行排序，函数的流程如下：</p>
+<h3 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h3><p>在新项目中, 引入之前旧项目的公用依赖包之后，发现这个依赖包携带了大量的其他公用依赖树。如：通用返回结构类、通用异常类等等；但是在新项目中，这些都是需要重新定义的。</p>
+<h3 id="二、问题"><a href="#二、问题" class="headerlink" title="二、问题"></a>二、问题</h3><p>由于定义的类名相同，导致引入依赖包时，经常有开发同学引入错误，导致了一些bug。<br>于是在gradle依赖中，使用<code>**exclude**</code>关键字排除这些依赖树。如：<br><img src="https://cdn.nlark.com/yuque/0/2024/png/29411486/1706524011879-175ec62e-7cd5-42b2-9a62-d32a0aef6e88.png#averageHue=%232d2d2c&clientId=ud281526c-a252-4&from=paste&height=105&id=u0350b5a0&originHeight=116&originWidth=674&originalType=binary&ratio=1.100000023841858&rotation=0&showTitle=false&size=11970&status=done&style=none&taskId=u75a20701-cc18-44fe-a185-66f70478962&title=&width=612.727259446767" srcset="/img/loading.gif" lazyload alt="image.png"><br>但是排除之后发现项目无法启动！<br><img src="https://cdn.nlark.com/yuque/0/2024/png/29411486/1706524342452-5cddd4f2-4515-4bf4-8ef9-4b925005888c.png#averageHue=%2334322f&clientId=ud281526c-a252-4&from=paste&height=284&id=u95d583fc&originHeight=312&originWidth=1260&originalType=binary&ratio=1.100000023841858&rotation=0&showTitle=false&size=109747&status=done&style=none&taskId=u691667fc-135a-48fe-aa72-d8fbe4c7113&title=&width=1145.4545206274875" srcset="/img/loading.gif" lazyload alt="image.png"><br>显然，我们将<strong>field-encrypt</strong>中的<strong>cn.sharing.service:sharing-exception</strong>也排除掉了</p>
+<p>原因：使用exclue语句排除一个依赖时，它会影响整个传递依赖关系树。<br>这可能会导致以下问题：</p>
 <ol>
-<li><p>计算当前区间的中点下标<code>mid = (r - l) / 2</code></p>
-</li>
-<li><p>递归调用函数 <code>mergeSort(nums, l, mid)</code>对<code>nums</code>数组里面的<code>[l, mid]</code>部分进行排序。</p>
-</li>
-<li><p>递归调用函数 <code>mergeSort(nums, mid+1, r)</code>对<code>nums</code>数组里面的<code>[mid+1, r]</code>部分进行排序。</p>
-</li>
-<li><p>此时，<code>nums</code>数组里面的<code>[l, mid]</code>部分和<code>[mid+1, r]</code>部分都已经有序，我们对两个有序区间进行线性合并即可。</p>
-</li>
-<li><p>线性归并的过程：由于两个区间都是有序的，所以我们维护两个指针<code>i</code>和<code>j</code>分别指向两个区间的起点，以及一个临时数组，存放有序的序列；然后对任意区间进行遍历，如果<code>nums[i] &lt;= nums[j]</code>那么我们将<code>nums[i]</code>放入临时数组，否则就将<code>nums[j]</code>放入临时数组，全部遍历完成后，再将剩下多余的数组全部放入临时数组。</p>
-<p> 示意图：</p>
-</li>
+<li><strong>版本冲突：</strong> 如果<strong>cn.sharing.cloud:field-encrypt:1.2.4</strong>确实需要<strong>cn.sharing.service:sharing-exception</strong>，但与排除的版本冲突，可能会导致运行时错误或不一致性。</li>
+<li><strong>功能缺失：</strong> 如果<strong>cn.sharing.cloud:field-encrypt:1.2.4</strong>的某些功能依赖于<strong>cn.sharing.service:sharing-exception:1.0.6</strong>，排除它可能导致缺失这些功能。</li>
 </ol>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/gif/29411486/1708679447471-48886431-fbbf-418c-8b06-10589886216b.gif#averageHue=%23fdfcfc&clientId=uf5ec3c44-d104-4&from=drop&id=u236af1f9&originHeight=448&originWidth=805&originalType=binary&ratio=1.100000023841858&rotation=0&showTitle=false&size=1220304&status=done&style=stroke&taskId=u6215349f-2155-4f83-81dd-adda4c5ff56&title=" srcset="/img/loading.gif" lazyload alt="912_fig4.gif"></p>
-<h4 id="三、示例代码"><a href="#三、示例代码" class="headerlink" title="三、示例代码"></a>三、示例代码</h4><p>这里以Java代码为例，展示标准的归并排序算法：</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">public <span class="hljs-keyword">class</span> Solution &#123;<br><br>    public static void main(String<span class="hljs-literal">[]</span> args) &#123;<br><br>        <span class="hljs-built_in">int</span><span class="hljs-literal">[]</span> sortArray = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Solution()</span>.sort<span class="hljs-constructor">Array(<span class="hljs-params">new</span> <span class="hljs-params">int</span>[] &#123;5, 1, 1, 2, 0, 0&#125;)</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; sortArray.length; i++) &#123;<br>            <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.print(sortArray<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span>);<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-comment">// 创建全局的临时区间, 可以防止每次递归调用都创建新的数组</span><br>    <span class="hljs-built_in">int</span><span class="hljs-literal">[]</span> temp;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 归并排序</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * @param nums</span><br><span class="hljs-comment">     * @author: chenXin</span><br><span class="hljs-comment">     * @date: 2024/2/23</span><br><span class="hljs-comment">     */</span><br>    public <span class="hljs-built_in">int</span><span class="hljs-literal">[]</span> sort<span class="hljs-constructor">Array(<span class="hljs-params">int</span>[] <span class="hljs-params">nums</span>)</span> &#123;<br>        temp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">int</span><span class="hljs-literal">[<span class="hljs-identifier">nums</span>.<span class="hljs-identifier">length</span>]</span>;<br>        merge<span class="hljs-constructor">Sort(<span class="hljs-params">nums</span>, 0, <span class="hljs-params">nums</span>.<span class="hljs-params">length</span> - 1)</span>;<br>        return nums;<br>    &#125;<br><br>    public void merge<span class="hljs-constructor">Sort(<span class="hljs-params">int</span>[] <span class="hljs-params">nums</span>, <span class="hljs-params">int</span> <span class="hljs-params">l</span>, <span class="hljs-params">int</span> <span class="hljs-params">r</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span> (l &gt;= r) &#123;<br>            return;<br>        &#125;<br><br>        <span class="hljs-comment">// 计算中点</span><br>        <span class="hljs-built_in">int</span> mid = (r + l) &gt;&gt; <span class="hljs-number">1</span>;<br><br>        <span class="hljs-comment">// 拆分为两个序列，并进行递归调用</span><br>        merge<span class="hljs-constructor">Sort(<span class="hljs-params">nums</span>, <span class="hljs-params">l</span>, <span class="hljs-params">mid</span>)</span>;<br>        merge<span class="hljs-constructor">Sort(<span class="hljs-params">nums</span>, <span class="hljs-params">mid</span> + 1, <span class="hljs-params">r</span>)</span>;<br><br>        <span class="hljs-comment">// 合并线性序列 保证整体区间有序</span><br>        merge<span class="hljs-constructor">Nums(<span class="hljs-params">nums</span>, <span class="hljs-params">l</span>, <span class="hljs-params">r</span>, <span class="hljs-params">mid</span>)</span>;<br><br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 合并线性序列</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> void merge<span class="hljs-constructor">Nums(<span class="hljs-params">int</span>[] <span class="hljs-params">nums</span>, <span class="hljs-params">int</span> <span class="hljs-params">l</span>, <span class="hljs-params">int</span> <span class="hljs-params">r</span>, <span class="hljs-params">int</span> <span class="hljs-params">mid</span>)</span> &#123;<br>        <span class="hljs-built_in">int</span> k = <span class="hljs-number">0</span>, i = l, j = mid + <span class="hljs-number">1</span>;<br><br>        <span class="hljs-comment">// 遍历左边的区间 将小的放入临时区间</span><br>        <span class="hljs-keyword">while</span> (i &lt; mid + <span class="hljs-number">1</span><span class="hljs-operator"> &amp;&amp; </span>j &lt; r + <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">if</span> (nums<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span> &lt;= nums<span class="hljs-literal">[<span class="hljs-identifier">j</span>]</span>) &#123;<br>                temp<span class="hljs-literal">[<span class="hljs-identifier">k</span><span class="hljs-operator">++</span>]</span> = nums<span class="hljs-literal">[<span class="hljs-identifier">i</span><span class="hljs-operator">++</span>]</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                temp<span class="hljs-literal">[<span class="hljs-identifier">k</span><span class="hljs-operator">++</span>]</span> = nums<span class="hljs-literal">[<span class="hljs-identifier">j</span><span class="hljs-operator">++</span>]</span>;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">// 剩余的直接放入临时区间</span><br>        <span class="hljs-keyword">while</span> (i &lt; mid + <span class="hljs-number">1</span>) &#123;<br>            temp<span class="hljs-literal">[<span class="hljs-identifier">k</span><span class="hljs-operator">++</span>]</span> = nums<span class="hljs-literal">[<span class="hljs-identifier">i</span><span class="hljs-operator">++</span>]</span>;<br>        &#125;<br>        <span class="hljs-keyword">while</span> (j &lt; r + <span class="hljs-number">1</span>) &#123;<br>            temp<span class="hljs-literal">[<span class="hljs-identifier">k</span><span class="hljs-operator">++</span>]</span> = nums<span class="hljs-literal">[<span class="hljs-identifier">j</span><span class="hljs-operator">++</span>]</span>;<br>        &#125;<br><br>        <span class="hljs-comment">// 把临时区间赋值给nums</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> m = <span class="hljs-number">0</span>; m &lt; k; m++) &#123;<br>            nums<span class="hljs-literal">[<span class="hljs-identifier">l</span> + <span class="hljs-identifier">m</span>]</span> = temp<span class="hljs-literal">[<span class="hljs-identifier">m</span>]</span>;<br>        &#125;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="三、解决"><a href="#三、解决" class="headerlink" title="三、解决"></a>三、解决</h3><p>使用<strong>configurations</strong>块来针对特定配置进行排除。<br>代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">configurations &#123;<br>    excludeSharingException &#123;<br>        exclude group: <span class="hljs-string">&#x27;cn.sharing.service&#x27;</span>, module: <span class="hljs-string">&#x27;sharing-exception&#x27;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -313,7 +306,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E7%BB%8F%E9%AA%8C/" class="category-chain-item">编程经验</a>
   
   
 
@@ -328,7 +321,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" class="print-no-link">#排序算法</a>
+        <a href="/tags/Java/" class="print-no-link">#Java</a>
       
     </div>
   
@@ -340,8 +333,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>什么是归并排序？</div>
-      <div>http://example.comde/2024/02/27/什么是归并排序？/</div>
+      <div>Gradle排除依赖导致依赖不可用问题</div>
+      <div>http://example.comde/2024/01/29/Gradle排除依赖导致依赖不可用问题/</div>
     </div>
     <div class="license-meta">
       
@@ -353,7 +346,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年2月27日</div>
+          <div>2024年1月29日</div>
         </div>
       
       
@@ -385,12 +378,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2024/02/27/%E4%BB%80%E4%B9%88%E6%98%AF%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%EF%BC%9F/" title="什么是归并排序？">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">什么是归并排序？</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/01/29/Gradle%E6%8E%92%E9%99%A4%E4%BE%9D%E8%B5%96%E5%AF%BC%E8%87%B4%E4%BE%9D%E8%B5%96%E4%B8%8D%E5%8F%AF%E7%94%A8%E9%97%AE%E9%A2%98/" title="Gradle排除依赖导致依赖不可用问题">
-                        <span class="hidden-mobile">Gradle排除依赖导致依赖不可用问题</span>
+                      <a href="/2024/01/27/MySQL%E4%B8%AD%E6%9F%A5%E8%AF%A2json%E7%B1%BB%E5%9E%8B%E5%AD%97%E6%AE%B5%E4%B8%AD%E7%9A%84%E4%B8%AD%E6%96%87%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/" title="MySQL中查询json类型字段中的中文报错问题">
+                        <span class="hidden-mobile">MySQL中查询json类型字段中的中文报错问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
